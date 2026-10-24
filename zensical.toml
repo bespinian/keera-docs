@@ -1,0 +1,136 @@
+[project]
+site_name = "Keera"
+site_description = "User documentation for Keera Gateway and Keera Chat."
+site_author = "bespinian GmbH"
+site_url = "https://docs.keera.ch/"
+copyright = "Copyright &copy; 2026 bespinian GmbH"
+
+repo_url = "https://github.com/bespinian/keera-gateway"
+repo_name = "bespinian/keera-gateway"
+
+nav = [
+  { "Home" = "index.md" },
+  { "Get started" = [
+    "get-started/index.md",
+    "get-started/quickstart.md",
+    "get-started/concepts.md",
+  ] },
+  { "Use Keera" = [
+    "use/index.md",
+    "use/sign-in.md",
+    "use/connect.md",
+    "use/my-access.md",
+    "use/playground.md",
+    "use/chat.md",
+    "use/api.md",
+  ] },
+  { "Manage" = [
+    "manage/index.md",
+    "manage/projects-and-keys.md",
+    "manage/users.md",
+    "manage/models.md",
+    "manage/guardrails.md",
+    "manage/filters.md",
+    "manage/routers.md",
+    "manage/mcp.md",
+    "manage/sandboxes.md",
+    "manage/billing.md",
+  ] },
+  { "Monitor" = [
+    "monitor/index.md",
+    "monitor/dashboard.md",
+    "monitor/live-map.md",
+    "monitor/requests-and-sessions.md",
+  ] },
+  { "Self-host" = [
+    "operate/index.md",
+    "operate/install.md",
+    "operate/sign-on.md",
+    "operate/chat.md",
+    "operate/claude-plans.md",
+    "operate/settings.md",
+    "operate/troubleshooting.md",
+  ] },
+  { "Reference" = [
+    { "API" = [
+      "reference/api/index.md",
+      "reference/api/schemas.md",
+    ] },
+    "reference/cli.md",
+    "reference/errors.md",
+  ] },
+]
+
+extra_css = ["assets/stylesheets/keera.css"]
+
+[project.theme]
+custom_dir = "overrides"
+language = "en"
+logo = "assets/images/logo.svg"
+favicon = "assets/images/logo.svg"
+features = [
+  "content.code.copy",
+  "content.tabs.link",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.tabs",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+[project.theme.font]
+text = "Space Grotesk"
+code = "JetBrains Mono"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/bespinian/keera-gateway"
+
+[[project.extra.social]]
+icon = "lucide/globe"
+link = "https://keera.ch"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+md_in_html = {}
+toc.permalink = true
+pymdownx.betterem = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.magiclink = {}
+pymdownx.smartsymbols = {}
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true

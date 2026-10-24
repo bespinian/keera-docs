@@ -1,0 +1,58 @@
+/* Keera's colours, taken from keera.ch: one blue accent on a white or
+   near-black ground. */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1657c8;
+  --md-primary-fg-color--light: #2f6fe0;
+  --md-primary-fg-color--dark: #0f47a8;
+  --md-accent-fg-color: #0f47a8;
+  --md-typeset-a-color: #1657c8;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #6ea8ff;
+  --md-primary-fg-color--light: #8dbcff;
+  --md-primary-fg-color--dark: #4b8de8;
+  --md-accent-fg-color: #8dbcff;
+  --md-typeset-a-color: #6ea8ff;
+  --md-default-bg-color: #0f1218;
+}
+
+/* Body text uses the same font stack as the Keera Gateway control panel.
+   Space Grotesk, loaded through `theme.font.text`, is kept for headings and
+   navigation. The theme reads the font from a variable, so the variable is
+   redefined per region. */
+body {
+  --md-text-font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.md-typeset :is(h1, h2, h3, h4, h5, h6),
+.md-typeset .tabbed-labels,
+.md-header,
+.md-tabs,
+.md-path,
+.md-nav,
+.md-footer {
+  --md-text-font-family: var(--md-text-font), sans-serif;
+  font-family: var(--md-text-font-family);
+}
+
+/* Screenshots get a thin frame, so a white panel does not melt into a white
+   page. */
+.md-typeset img.screenshot {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 6%);
+}
+
+/* Keera beside the intro on the landing page. On a phone there is no room
+   beside her, so she sits above the text instead. */
+@media screen and (max-width: 44.9375em) {
+  .md-typeset img.hero-keera {
+    float: none;
+    display: block;
+    width: 160px;
+    margin: 0 auto 1em;
+  }
+}
