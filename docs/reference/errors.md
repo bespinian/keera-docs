@@ -10,6 +10,7 @@ its errors carry a type that follows the status, such as `billing_error` for
 | 400    | `context_length_exceeded`                                | The conversation is too long for the model. Agents shorten it and retry.         |
 | 400    | `missing_model`, `invalid_body`, `unsupported_parameter` | The request is not valid.                                                        |
 | 400    | `subscription_model`                                     | A Claude plan model only answers the Anthropic Messages API.                     |
+| 400    | `router_undecided`                                       | A header step got no value it knows. The message lists the values.               |
 | 401    | `missing_api_key`, `invalid_api_key`                     | No key, or a key the gateway does not know.                                      |
 | 401    | `expired_api_key`, `revoked_api_key`                     | The key has expired or was revoked. Get a new one.                               |
 | 401    | `subscription_key`, `missing_claude_sign_in`             | A [Claude plan](../operate/claude-plans.md) request is set up wrong.             |

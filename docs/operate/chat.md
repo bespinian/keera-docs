@@ -32,7 +32,7 @@ replies stream.
 | `KEERA_CHAT_GATEWAY_INTERNAL_URL` | `KEERA_CHAT_GATEWAY_URL`  | The gateway's address from Keera Chat, if different, such as `http://gateway:8080`.  |
 | `KEERA_CHAT_ADDR`                 | `:8090`                   | The address and port to listen on.                                                   |
 | `KEERA_CHAT_SECURE_COOKIES`       | on for https              | Marks the sign-in cookie `Secure`.                                                   |
-| `KEERA_CHAT_MAX_BODY_BYTES`       | 32 MiB                    | The largest request. Each one carries the whole conversation, images included.       |
+| `KEERA_CHAT_MAX_BODY_BYTES`       | 32 MiB                    | The largest request. Each one carries the whole conversation, attachments included.  |
 | `KEERA_CHAT_LOG_LEVEL`            | `info`                    | `debug`, `info`, `warn` or `error`.                                                  |
 | `KEERA_CHAT_LOG_FORMAT`           | `text`                    | `text` or `json`.                                                                    |
 

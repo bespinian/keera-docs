@@ -25,7 +25,10 @@ have no usable key, Keera Chat tells you whom to ask.
 ## What you can do
 
 - **Stop** a reply, **Answer again**, or **Edit** a message you sent.
-- Attach images with **+**, if the model reads images.
+- Attach images, PDFs and text files with **+**. Every model reads text
+  files, up to ten of 512 KB each. Images and PDFs need a model that reads
+  images, because Keera Chat sends each PDF page as an image, up to ten a
+  message.
 - Open a model's reasoning with **Show the thought process**, if it shares it.
 - See how full the conversation is in the ring next to the send button. When
   the model's context is full, start a new chat.
@@ -54,7 +57,7 @@ browser, separately for each person and organisation. This means:
 
 - **They do not move to another device or browser.** Use **Export chats** and
   **Import chats** in the account menu to take them along. The export file
-  holds your chats, their images and your custom instructions, and is not
+  holds your chats, their attachments and your custom instructions, and is not
   encrypted. Importing keeps the chats already there, and replaces one only
   with a newer copy of it. It takes the file's custom instructions only if you
   have none yet.
