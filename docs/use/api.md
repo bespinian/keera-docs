@@ -47,25 +47,23 @@ Send your key in one of these headers:
 
 ## Headers you get back
 
-| Header                           | What it tells you                                                                                                   |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `X-Keera-Model`                  | the model that answered                                                                                             |
-| `X-Keera-Router`                 | the router, and where it sent the request                                                                           |
-| `X-Keera-Filters`                | the filters that changed or checked the request                                                                     |
-| `X-Keera-Budget-Scope`           | the level of the tightest budget: `org`, `project` or `key`                                                         |
-| `X-Keera-Budget-Limit`           | that budget, in CHF                                                                                                 |
-| `X-Keera-Budget-Remaining`       | money left in it, in CHF                                                                                            |
-| `X-Keera-Budget-Reset`           | when it resets                                                                                                      |
-| `X-RateLimit-Limit-Requests`     | the tightest rate limit, in requests per minute                                                                     |
-| `X-RateLimit-Remaining-Requests` | requests left this minute                                                                                           |
-| `X-Keera-RateLimit-Scope`        | the level of that limit                                                                                             |
-| `X-Keera-Removed-Tools`          | tools the provider runs itself, removed on the gateway's keys; see [Billing](../manage/billing.md#the-monthly-bill) |
-| `X-Keera-Removed-Fields`         | fields that cost extra, removed on the gateway's keys                                                               |
-| `X-Request-Id`                   | the request's id; search for it on the Requests screen                                                              |
+| Header                           | What it tells you                                                                                                              |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `X-Keera-Model`                  | the model that answered                                                                                                        |
+| `X-Keera-Router`                 | the router, and where it sent the request                                                                                      |
+| `X-Keera-Filters`                | the filters that changed or checked the request                                                                                |
+| `X-Keera-Budget-Scope`           | the level of the tightest budget: `org`, `project` or `key`                                                                    |
+| `X-Keera-Budget-Limit`           | that budget, in CHF                                                                                                            |
+| `X-Keera-Budget-Remaining`       | money left in it, in CHF                                                                                                       |
+| `X-Keera-Budget-Reset`           | when it resets                                                                                                                 |
+| `X-RateLimit-Limit-Requests`     | the tightest rate limit, in requests per minute                                                                                |
+| `X-RateLimit-Remaining-Requests` | requests left this minute                                                                                                      |
+| `X-Keera-RateLimit-Scope`        | the level of that limit                                                                                                        |
+| `X-Keera-Removed-Tools`          | tools the provider runs itself, removed on the gateway's keys; see [Billing](../manage/billing.md#what-is-fixed-or-turned-off) |
+| `X-Keera-Removed-Fields`         | fields that cost extra, removed on the gateway's keys; see [Billing](../manage/billing.md#what-is-fixed-or-turned-off)         |
+| `X-Request-Id`                   | the request's id; search for it on the Requests screen                                                                         |
 
 ## Errors
 
-Errors come in the format of the API you called. A conversation too long for
-the model gets `context_length_exceeded`, which Claude Code and other agents
-understand: they shorten it and retry. See [Errors](../reference/errors.md)
-for every code.
+Errors come in the format of the API you called. See
+[Errors](../reference/errors.md) for every code.

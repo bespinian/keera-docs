@@ -19,7 +19,8 @@ Below the keys, it lists the requests that were refused or failed in the last
 
 An administrator can issue a key for you without seeing its secret. It shows
 as **Not activated** until you activate it. Click **Activate** on My access,
-and copy the secret: it is shown only once. Or run:
+and copy the secret: it is
+[shown only once](../manage/projects-and-keys.md#issue-a-key). Or run:
 
 ```sh
 keera key activate <key>   # its name or id
@@ -35,8 +36,7 @@ My access also has **Revoke**.
 
 - **Rotate** replaces a key with a new one in the same project, with the same
   guardrails and the same lifetime, counted from now. The old key stops
-  working at once. Do this when a key may have
-  leaked.
+  working at once. Do this when a key may have leaked.
 - **Revoke** stops a key for good.
 
 Only administrators issue new keys. Ask yours when you need one.
@@ -49,16 +49,15 @@ how to set up another one. See [Connect your tools](connect.md).
 
 ## When a request is refused
 
-Your tool shows the message the gateway sent. The most common reasons:
+Your tool shows the message the gateway sent, with a code.
+[Errors](../reference/errors.md) says what each code means. What to do about
+the most common ones:
 
-| Message says                 | What to do                                                                                                         |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| budget exceeded (402)        | The budget is used up. It resets on the date shown. Ask an administrator for more.                                 |
-| credit exhausted (402)       | The organisation's prepaid credit is used up. An administrator [adds credit](../manage/billing.md#pay-in-advance). |
-| rate limit (429)             | Too many requests in a short time. Wait a moment; the tool usually retries.                                        |
-| refused by a filter (403)    | A filter found something that may not be sent, such as a password. Remove it and try again.                        |
-| needs to add credit (403)    | The organisation is [new and limited](../manage/billing.md#new-organisations). An administrator adds credit.       |
-| model not found (404)        | The key may not use this model, or the name is wrong. Check the models on My access.                               |
-| key expired or revoked (401) | Ask for a new key, or activate the one waiting for you.                                                            |
-
-[Errors](../reference/errors.md) lists every error code.
+| Code                                 | What to do                                                                 |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| `budget_exceeded`                    | Wait until the date shown, or ask an administrator for more.               |
+| `credit_exhausted`, `org_limited`    | Ask an administrator to [add credit](../manage/billing.md#pay-in-advance). |
+| `rate_limit_exceeded`                | Wait a moment. The tool usually retries.                                   |
+| `filter_refused`                     | Remove what the filter names, such as a password, and try again.           |
+| `model_not_found`                    | Check the name against the models on My access.                            |
+| `expired_api_key`, `revoked_api_key` | Ask for a new key, or [activate](#activate-a-key) the one waiting for you. |

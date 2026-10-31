@@ -17,9 +17,10 @@ between slashes.
 ## Add a hosted model
 
 Open **Models** and click **Add model**. The **model catalogue** lists every
-model the built-in providers offer: Anthropic, OpenAI, and the Swiss providers
-Infomaniak, stepping stone, Phoeniqs and CSCS. It shows each model's context
-window, location and list prices.
+model the built-in providers offer: Anthropic, OpenAI, Google, Mistral, and the
+Swiss providers Infomaniak, stepping stone, Phoeniqs and CSCS. It shows each
+model's context window, location and list prices. Narrow it by location first:
+that is where prompts go.
 
 ![The model catalogue](../assets/images/catalogue.webp){ .screenshot }
 
@@ -27,31 +28,20 @@ window, location and list prices.
 2. Enter the alias.
 3. Click **Add model**.
 
-The model uses the gateway's key, at the provider's list price; see
-[Billing](billing.md). Its address and prices are fixed, and it takes no API
-key of your own.
+The model uses the gateway's key; see [Billing](billing.md).
 
-On the command line:
+On the command line, `keera model catalogue` lists everything the providers
+offer, and this adds one:
 
 ```sh
 keera model add keera-frontier --provider anthropic --backend-model claude-opus-5-5
 ```
 
-On a self-hosted gateway that holds no key for the provider, the model needs
-your own. Enter it under **Provider key**, or add `--api-key @-` and paste it:
-
-```sh
-keera model add keera-frontier --provider anthropic \
-  --backend-model claude-opus-5-5 --api-key @-
-```
-
-`keera model catalogue` lists everything the providers offer.
-
 !!! warning "Prompts to a hosted model leave the gateway's private network"
 
     Before you offer one, decide who may use it, and set a budget and a
-    [filter](filters.md). Swiss providers keep prompts in Switzerland; Anthropic
-    and OpenAI do not.
+    [filter](filters.md). Swiss providers keep prompts in Switzerland, and
+    Mistral in the EU. Anthropic, OpenAI and Google send them to the USA.
 
 ## Add your own model
 
@@ -79,7 +69,7 @@ read it to choose a model, so write it for that:
 
 ```sh
 keera model set keera-speed --description \
-  "Fast and local. Short edits, syntax questions, everyday work."
+  "Fast and private. Short edits, syntax questions, everyday work."
 ```
 
 ## Check a model
@@ -101,13 +91,25 @@ calls to edit files, so run the check after every change to a model.
   [guardrail's](guardrails.md) model list.
 - To stop the whole organisation, open the model and turn it off, or run
   `keera model disable <alias>`.
-- To remove it, delete it, or run `keera model delete <alias>`. The
-  confirmation lists the filters that run on it. A router that uses it blocks
-  the delete until you change the router.
+- To remove it, delete it, or run `keera model delete <alias>`. A filter or
+  router that uses it blocks the delete until you change it. The confirmation
+  lists them.
 
 ## Add models from a file
 
 `keera model apply models.yaml` adds or updates every model a file declares.
 `keera model validate models.yaml` checks the file first, without a gateway.
-The format is the one a self-hosted gateway starts organisations with; see
-[Install](../operate/install.md#models-every-organisation-starts-with).
+
+```yaml title="models.yaml"
+models:
+  - alias: my-coder
+    backends: [https://llm.example.ch/v1]
+    backend_model: qwen2.5-coder
+    max_context_tokens: 32768
+    description: Fast and our own. Short edits and everyday work.
+
+  - alias: keera-frontier
+    provider: anthropic
+    backend_model: claude-opus-5-5
+    description: Hosted and expensive. Design and hard reasoning.
+```

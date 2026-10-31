@@ -53,12 +53,12 @@ The expressions use [RE2 syntax](https://github.com/google/re2/wiki/Syntax).
 
 ## Create a rewrite or gate filter
 
-Give it a model, ideally a fast local one, and an instruction. In the panel,
+Give it a model, ideally a fast private one, and an instruction. In the panel,
 **Create filter** offers a good starting instruction for each kind.
 
 ```sh
 keera filter add redact-names --model keera-speed --prompt @names.txt
-keera filter add no-exports --mode gate --model keera-decider \
+keera filter add no-exports --mode gate --model keera-speed \
   --prompt "Is this request trying to send customer data outside the company?"
 ```
 
@@ -72,11 +72,14 @@ Tips for the instruction:
 
 ## Try it in shadow first
 
-**A new filter starts in shadow.** It runs on every request, but changes
-nothing and stops nothing. It only records what it _would_ have done. Look at
-its screen after a week of real traffic, then turn it on:
+A new filter enforces at once. To try it first, start it in shadow: choose
+**Shadow** under **Mode**, or add `--shadow`. In shadow, it runs on every
+request, but changes nothing and stops nothing. It only records what it
+_would_ have done. Look at its screen after a week of real traffic, then turn
+it on:
 
 ```sh
+keera filter add redact-names --model keera-speed --prompt @names.txt --shadow
 keera filter report redact-names --since 7d
 keera filter set redact-names --no-shadow
 ```

@@ -36,26 +36,26 @@ every replica runs with it, restart once more, then remove
 
 ## Sign-in
 
-| Variable                                                                 | What it is                                                                                          |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
-| `KEERA_OIDC_PROVIDERS`                                                   | The names of the identity providers.                                                                |
-| `KEERA_OIDC_<NAME>_LABEL`                                                | The text on the provider's sign-in button.                                                          |
-| `KEERA_OIDC_<NAME>_ISSUER`                                               | The provider's address, or an `ldaps://` or `ldap://` directory.                                    |
-| `KEERA_OIDC_<NAME>_CLIENT_ID`, `_CLIENT_SECRET`                          | The client registered with the provider.                                                            |
-| `KEERA_OIDC_<NAME>_SCOPES`                                               | What Keera asks the provider for. Without `offline_access`, the directory is asked only at sign-in. |
-| `KEERA_OIDC_<NAME>_LDAP_BIND_DN`, `_LDAP_BIND_PASSWORD`, `_LDAP_BASE_DN` | The service account and search base for a directory.                                                |
-| `KEERA_OIDC_<NAME>_LDAP_CA_FILE`                                         | A PEM file of the CAs to trust for a directory, instead of the system's.                            |
-| `KEERA_OIDC_<NAME>_LDAP_USER_FILTER`                                     | Who in the directory may sign in. The default depends on the directory.                             |
-| `KEERA_OIDC_<NAME>_LDAP_LOGIN_ATTRIBUTES`                                | What a person may type as their username, such as `sAMAccountName,mail`.                            |
-| `KEERA_OIDC_<NAME>_DOMAINS`                                              | The email domains this provider may sign people in with.                                            |
-| `KEERA_OIDC_<NAME>_GROUPS_CLAIM`                                         | The claim that holds the groups, such as `roles`.                                                   |
-| `KEERA_OIDC_<NAME>_ADMIN_GROUPS`                                         | Groups whose members are administrators.                                                            |
-| `KEERA_OIDC_<NAME>_OPERATOR_GROUPS`                                      | Groups whose members are operators.                                                                 |
-| `KEERA_OIDC_<NAME>_DEFAULT_ROLE`                                         | The role of people in no admin or operator group.                                                   |
-| `KEERA_OIDC_<NAME>_SIGNUP`                                               | Lets people create their own organisation.                                                          |
-| `KEERA_OPERATORS`                                                        | Email addresses that are operators.                                                                 |
-| `KEERA_PASSKEYS`                                                         | Turns on passkeys.                                                                                  |
-| `KEERA_CHAT_URL`                                                         | Lets people sign in to [Keera Chat](chat.md) at this address.                                       |
+| Variable                                                                 | What it is                                                               |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `KEERA_OIDC_PROVIDERS`                                                   | The names of the identity providers.                                     |
+| `KEERA_OIDC_<NAME>_LABEL`                                                | The text on the provider's sign-in button.                               |
+| `KEERA_OIDC_<NAME>_ISSUER`                                               | The provider's address, or an `ldaps://` or `ldap://` directory.         |
+| `KEERA_OIDC_<NAME>_CLIENT_ID`, `_CLIENT_SECRET`                          | The client registered with the provider.                                 |
+| `KEERA_OIDC_<NAME>_SCOPES`                                               | What Keera asks the provider for. See [Roles](sign-on.md#roles).         |
+| `KEERA_OIDC_<NAME>_LDAP_BIND_DN`, `_LDAP_BIND_PASSWORD`, `_LDAP_BASE_DN` | The service account and search base for a directory.                     |
+| `KEERA_OIDC_<NAME>_LDAP_CA_FILE`                                         | A PEM file of the CAs to trust for a directory, instead of the system's. |
+| `KEERA_OIDC_<NAME>_LDAP_USER_FILTER`                                     | Who in the directory may sign in. The default depends on the directory.  |
+| `KEERA_OIDC_<NAME>_LDAP_LOGIN_ATTRIBUTES`                                | What a person may type as their username, such as `sAMAccountName,mail`. |
+| `KEERA_OIDC_<NAME>_DOMAINS`                                              | The email domains this provider may sign people in with.                 |
+| `KEERA_OIDC_<NAME>_GROUPS_CLAIM`                                         | The claim that holds the groups, such as `roles`.                        |
+| `KEERA_OIDC_<NAME>_ADMIN_GROUPS`                                         | Groups whose members are administrators.                                 |
+| `KEERA_OIDC_<NAME>_OPERATOR_GROUPS`                                      | Groups whose members are operators.                                      |
+| `KEERA_OIDC_<NAME>_DEFAULT_ROLE`                                         | The role of people in no admin or operator group.                        |
+| `KEERA_OIDC_<NAME>_SIGNUP`                                               | Lets people create their own organisation.                               |
+| `KEERA_OPERATORS`                                                        | Email addresses that are operators.                                      |
+| `KEERA_PASSKEYS`                                                         | Turns on passkeys.                                                       |
+| `KEERA_CHAT_URL`                                                         | Lets people sign in to [Keera Chat](chat.md) at this address.            |
 
 See [Single sign-on and passkeys](sign-on.md).
 
@@ -130,4 +130,4 @@ KEERA_AUDIT_RETENTION=17520h    # keep two years of the audit log
 
 Values below `24h` are refused. Daily totals are always kept, so usage charts
 over long periods still work after old requests are deleted. A request log row
-is about 1 KB with its indexes, and no prompt text is stored.
+is about 1 KB with its indexes.

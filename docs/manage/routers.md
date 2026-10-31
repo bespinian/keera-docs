@@ -6,12 +6,13 @@ request.
 
 Use a router to:
 
-- send small tasks to a cheap local model and hard ones to a large model
+- send small tasks to a cheap private model and hard ones to a large hosted
+  model
 - let your app say which model a request needs
 - fall back to another model when one is down
 - spread requests across several copies of a model
 - redact only the requests that go to a hosted model
-- switch to the local model once the hosted budget is spent
+- switch to a private model once the hosted budget is spent
 
 ## The steps
 
@@ -28,10 +29,10 @@ A router is a tree of steps. A request enters on the left and ends at a model.
 
 ![The router editor draws the steps as a tree.](../assets/images/router-editor.webp){ .screenshot }
 
-This router removes credentials, sends long requests to the hosted model and
-short ones to the local model. On the way to the hosted model it also removes
-client names. Once CHF 50 are spent in a month, everything goes to the local
-model.
+This router, `guarded`, removes credentials, sends long requests to the hosted
+model and short ones to the private model. On the way to the hosted model, it
+also removes client names. Once CHF 50 are spent in a month, everything goes
+to the private model.
 
 ## How a route step chooses
 
@@ -76,14 +77,14 @@ On the command line, a router with one route step:
 
 ```sh
 # Let a small model decide
-keera router add auto --model keera-decider \
+keera router add auto --model keera-speed \
   --destinations keera-speed,keera-frontier --fallback keera-speed \
   --prompt "Which model should answer this request?" --display-name Auto
 
-# By size: up to 4,000 tokens to the local model, the rest to the large one
+# By size: up to 4,000 tokens to the private model, the rest to the hosted one
 keera router add bysize --mode size --destinations keera-speed:4k,keera-frontier
 
-# Fallback: the cluster first, the hosted model when it is down
+# Fallback: the private model first, the hosted one when it is down
 keera router add ha --mode fallback --destinations keera-speed,keera-frontier
 
 # By header: the app sends X-Keera-Route: cheap or hard
@@ -129,7 +130,9 @@ step, it also shows which values go to each model.
 
 Mistakes in routing are quiet: every request still gets an answer. So watch
 the router's screen. It shows how requests were split between models, how
-often it fell back, and what deciding added to the wait.
+often it fell back, and what deciding added to the wait. It also shows how
+much of each budget, and of each rate limit per day or month, is used. On the
+command line, run `keera router report <alias>`.
 
 A tool can see where its request went in the `X-Keera-Router` header, such as
 `auto -> keera-frontier`.

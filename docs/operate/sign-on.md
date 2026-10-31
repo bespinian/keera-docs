@@ -116,9 +116,13 @@ operator role.
 
 While someone is active, Keera asks the directory again every 15 minutes.
 Someone removed from the directory, or from a group, loses access or the role
-within that time. An OpenID Connect provider must hand out refresh tokens for
-this; without them, it is asked only at sign-in. GitHub is asked only whether
-the person still allows Keera.
+within that time. If the directory cannot be reached for 12 hours, their
+sign-ins end; the log says "has not answered since". An OpenID Connect provider
+must hand out refresh tokens for this. Keera asks for them with the
+`offline_access` scope, or on Google with offline access. If your provider
+refuses `offline_access`, set `KEERA_OIDC_<NAME>_SCOPES` without it. Then the
+directory is asked only at sign-in, and a sign-in lasts 12 hours instead of 30
+days. GitHub is asked only whether the person still allows Keera.
 
 ## Organisations and domains
 
@@ -131,8 +135,8 @@ keera org set "Example Bank" --domain example.ch
 ```
 
 While there is only one organisation and no provider allows self sign-up
-(below), everyone who can sign in lands in it. So limit the
-provider to your own staff (Google: **Internal**; Entra: your directory only).
+(below), everyone who can sign in lands in it. So limit the provider to your
+own staff (Google: **Internal**; Entra: your directory only).
 
 With several providers, each must list the domains it may sign people in
 with, in `KEERA_OIDC_<NAME>_DOMAINS`. Use `*` only for a provider that checks
@@ -141,8 +145,8 @@ every address itself, such as Google.
 **Self sign-up.** On a public gateway, `KEERA_OIDC_<NAME>_SIGNUP=true` lets
 someone with no matching organisation create their own. A new organisation
 starts limited until its first payment; see [Billing](../manage/billing.md).
-Sign-up needs `KEERA_UPSTREAM_PRIVATE`, and does not work with admin groups or
-an LDAP directory.
+Sign-up needs `KEERA_UPSTREAM_PRIVATE` set to a list of host names, not
+`all`. It does not work with admin groups or an LDAP directory.
 
 ## Passkeys
 
@@ -158,12 +162,11 @@ KEERA_PUBLIC_URL=https://keera.example.ch
 Passkeys need `https`, or `http://localhost`. They are tied to the host name,
 so do not change it later.
 
-An administrator adds a person with `keera user add <email> --passkey`, or
-**Users → Add user**, and sends them the set-up link. The address must be at
-the organisation's email domain, if it has one. For anyone else, such as a
-contractor at another company, an operator adds the account. A passkey account
-is never an operator. With no directory, make the first administrator with the
-operator key:
+Administrators add people as in
+[Add a person](../manage/users.md#add-a-person). For an address at another
+domain, such as a contractor's, an operator adds the account. A passkey
+account is never an operator. With no directory, make the first administrator
+with the operator key:
 
 ```sh
 keera user add you@example.ch --passkey --role admin
@@ -173,7 +176,8 @@ keera user add you@example.ch --passkey --role admin
 
 Once a provider is set up, the operator key is no longer on the sign-in
 screen. It still works for scripts and pipelines, and it is the way back in if
-single sign-on breaks: open `https://keera.example.ch/?operator_key=1`.
+single sign-on breaks: open `https://keera.example.ch/?operator_key=1`. A
+sign-in with it lasts 12 hours.
 
 Removing someone from the directory does not revoke their API keys. See
 [When someone leaves](../manage/users.md#when-someone-leaves).

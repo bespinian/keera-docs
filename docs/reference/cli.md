@@ -19,16 +19,16 @@ command takes `--json`, and every command `--color auto`, `always` or `never`.
 | `keera org`       | organisations: list, switch, create, set, delete                          |
 | `keera project`   | projects in your organisation                                             |
 | `keera user`      | people and their roles                                                    |
-| `keera key`       | API keys: create, activate, rotate, revoke                                |
+| `keera key`       | API keys: create, activate, list, change, rotate, revoke                  |
 | `keera model`     | models: add, change, check, turn off, delete, apply a file, the catalogue |
 | `keera guardrail` | what an organisation, project or key may do                               |
 | `keera limit`     | one scope's rate limits                                                   |
 | `keera budget`    | one scope's budgets                                                       |
-| `keera filter`    | filters: add, check, report                                               |
-| `keera router`    | routers: add, show, check, report                                         |
+| `keera filter`    | filters: add, change, check, report, delete                               |
+| `keera router`    | routers: add, show, change, check, report, delete                         |
 | `keera mcp`       | MCP servers and their tool calls                                          |
 | `keera sandbox`   | sandboxes and sandbox classes                                             |
-| `keera usage`     | usage and cost, by model, client, project, key, user, day or organisation |
+| `keera usage`     | usage and cost, by model, client, project, key, user or day               |
 | `keera session`   | tasks of coding agents                                                    |
 | `keera failures`  | requests that did not succeed, by kind or status, such as `--status 5xx`  |
 | `keera billing`   | the bill and credit for the gateway's own provider keys                   |

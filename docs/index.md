@@ -19,13 +19,14 @@ gateway's private network.
 - **One address for every tool.** Claude Code, Codex, OpenCode, notebooks and
   your own apps all use the same URL and their own key.
 - **Your models and hosted ones.** Serve open models on your own GPUs, and add
-  hosted models from Anthropic, OpenAI or Swiss providers next to them.
+  hosted models from Anthropic, OpenAI, Google, Mistral or Swiss providers next
+  to them.
 - **Guardrails.** Choose the models, budgets and rate limits for each
   organisation, project and key.
 - **Filters.** Remove credentials and personal data from a request before it
   leaves, or stop the request.
-- **Routers.** Send small tasks to a local model and hard ones to a large
-  model, automatically.
+- **Routers.** Send small tasks to a private model and hard ones to a large
+  hosted model, automatically.
 - **A chat for everyone.** [Keera Chat](use/chat.md) at chat.keera.ch, under
   the same guardrails.
 - **A full record.** Every request is logged with its cost and outcome. No
@@ -76,4 +77,5 @@ gateway's private network.
 ## More of Keera
 
 Besides the gateway and the chat, Keera has **Keera Engine**, which serves
-open-weight coding models on your own GPUs or on Swiss ones. Learn more on [keera.ch](https://keera.ch).
+open-weight coding models on your own GPUs or on Swiss ones. Learn more on
+[keera.ch](https://keera.ch).

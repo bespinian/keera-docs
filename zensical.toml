@@ -69,6 +69,7 @@ language = "en"
 logo = "assets/images/logo.svg"
 favicon = "assets/images/logo.svg"
 features = [
+  "content.action.copy",
   "content.code.copy",
   "content.tabs.link",
   "content.tooltips",
@@ -134,3 +135,61 @@ pymdownx.superfences.custom_fences = [
 ]
 pymdownx.tabbed.alternate_style = true
 pymdownx.tabbed.combine_header_slug = true
+
+# llms.txt lists pages in this order. The API reference is left out because
+# the OpenAPI spec describes it better.
+[project.plugins.llmstxt]
+markdown_description = """
+Keera Gateway at https://gateway.keera.ch sits between your tools and the AI models they use.
+Keera Chat is a chat app on top of it at https://chat.keera.ch.
+The API is described by the [OpenAPI spec](https://gateway.keera.ch/openapi.json).
+"""
+full_output = "llms-full.txt"
+
+[project.plugins.llmstxt.sections]
+"Get started" = [
+  "index.md",
+  "get-started/index.md",
+  "get-started/quickstart.md",
+  "get-started/concepts.md",
+]
+"Use Keera" = [
+  "use/index.md",
+  "use/sign-in.md",
+  "use/connect.md",
+  "use/my-access.md",
+  "use/playground.md",
+  "use/chat.md",
+  "use/api.md",
+]
+"Manage" = [
+  "manage/index.md",
+  "manage/projects-and-keys.md",
+  "manage/users.md",
+  "manage/models.md",
+  "manage/guardrails.md",
+  "manage/filters.md",
+  "manage/routers.md",
+  "manage/mcp.md",
+  "manage/sandboxes.md",
+  "manage/billing.md",
+]
+"Monitor" = [
+  "monitor/index.md",
+  "monitor/dashboard.md",
+  "monitor/live-map.md",
+  "monitor/requests-and-sessions.md",
+]
+"Reference" = [
+  "reference/cli.md",
+  "reference/errors.md",
+]
+"Optional" = [
+  "operate/index.md",
+  "operate/install.md",
+  "operate/sign-on.md",
+  "operate/chat.md",
+  "operate/claude-plans.md",
+  "operate/settings.md",
+  "operate/troubleshooting.md",
+]

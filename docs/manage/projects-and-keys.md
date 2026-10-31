@@ -19,7 +19,7 @@ sandboxes have ended. Expired keys and suspended sandboxes still count.
 
 ## Issue a key
 
-Only administrators issue keys. Open **API keys** and click **Issue key**.
+Open **API keys** and click **Issue key**.
 
 ![Issuing a key](../assets/images/issue-key.webp){ .screenshot }
 
@@ -58,7 +58,7 @@ here you can:
 - Click the pencil to rename it.
 
 ```sh
-keera key list
+keera key list                  # --all adds revoked keys
 keera key rotate "Ada's laptop"
 keera key revoke "Ada's laptop"
 keera key set "Ada's laptop" --name "Ada's old laptop"

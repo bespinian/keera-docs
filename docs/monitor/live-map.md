@@ -21,5 +21,4 @@ client with its requests, tokens, refusals and cost.
 
     Keera decides this from the model's address. A private address or an
     internal host name, such as `keera-engine`, is inside the gateway's private
-    network. Any
-    other address is outside.
+    network. Any other address is outside.

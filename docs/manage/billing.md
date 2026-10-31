@@ -2,22 +2,24 @@
 
 On <https://gateway.keera.ch>, the gateway holds **its own key** for each
 hosted provider. Every organisation uses it, and Keera bills each one for what
-it used, at the provider's list price. Only administrators see **Billing**.
-
-Models of those providers take no API key of your own.
+it used, at the provider's list price. Models of those providers take no API
+key of your own. Only administrators see **Billing**.
 
 ## The monthly bill
 
 **Billing** shows one row per provider model, with calls, tokens and the
-amount in CHF. **CSV** downloads it.
+amount in CHF. Prices a provider lists in USD are converted at a fixed rate.
+**CSV** downloads it.
 
 ```sh
 keera billing                  # this month
 keera billing --month 2026-09
 ```
 
-On the gateway's own keys, the model's address and prices are fixed, tools
-that the provider runs itself (such as web search) are removed, and faster or
+## What is fixed or turned off
+
+On the gateway's own keys, the model's address and prices are fixed. Tools
+that the provider runs itself, such as web search, are removed. Faster or
 dearer modes are turned off.
 
 ## Pay in advance
@@ -57,7 +59,11 @@ When the credit falls below CHF 50, the card is charged CHF 200.
 
 ## New organisations
 
-An organisation that signed itself up starts **limited**: it can use models
-on the gateway's keys and models on public addresses, but not models or MCP
-servers inside the gateway's network, nor sandboxes. The limit lifts with the
-first payment. A banner in the panel says what is still waiting.
+An organisation that signed itself up starts **limited**, with no credit.
+Until its first payment, it can use only [its own models](models.md#add-your-own-model)
+on public addresses. It cannot use private models, MCP servers inside the
+gateway's private network, or sandboxes.
+
+The first payment adds credit and lifts the limit. Credit that Keera grants
+can be used, but does not lift the limit. A banner in the panel says what is
+still waiting.

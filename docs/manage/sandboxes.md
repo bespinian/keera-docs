@@ -86,8 +86,6 @@ keera sandbox delete-class standard
 
 A class can use the image of a class your organisation started with, or an
 image the gateway's operator allows. Ask your operator for any other image.
-On a self-hosted gateway, see
-[`KEERA_SANDBOX_IMAGES`](../operate/settings.md#sandboxes).
 
 **Quotas** are part of a project's guardrail, set on the command line:
 
@@ -97,11 +95,10 @@ keera guardrail set project "Payments Platform" \
   --max-sandbox-cpu 8 --max-sandbox-memory 32768   # memory in MiB
 ```
 
-**Repositories** a sandbox may check out are set on the organisation, by an
-operator, and a project can narrow them:
+**Repositories** a sandbox may check out are set on the organisation by the
+gateway's operator. You can narrow them for a project:
 
 ```sh
-keera guardrail set org --repos acme
 keera guardrail set project "Payments Platform" --repos acme/service
 ```
 

@@ -21,14 +21,10 @@ error when a check fails, so it can end an install script.
 | The agent answers in prose and never edits a file        | The model returns no tool calls. Run `keera model check <alias>`. The CPU demo model cannot do tool calls.                                  |
 | Streaming arrives all at once                            | A proxy in front buffers the answer. Turn buffering off.                                                                                    |
 | A rate limit lets through more than it should            | With several replicas, each counts on its own. Set `KEERA_REDIS_URL`.                                                                       |
-| A limit does not seem to apply                           | Run `keera guardrail effective <scope> <id>`. The tightest level wins, and the command shows which one.                                     |
-| A developer says their agent stopped                     | Filter **Requests** by their key, or look at their **My access**. Every refusal is logged with its message.                                 |
-| The panel shows no sign-in button                        | `KEERA_OIDC_PROVIDERS` is not set. A provider the gateway cannot reach stops the start instead; see the gateway's log.                      |
+| The panel shows no sign-in button                        | Neither `KEERA_OIDC_PROVIDERS` nor `KEERA_PASSKEYS` is set. A provider the gateway cannot reach stops the start instead; see the log.       |
 | `redirect_uri_mismatch` when signing in                  | The address registered with the provider differs from `KEERA_PUBLIC_URL` + `/control/auth/callback`. Often `127.0.0.1` against `localhost`. |
 | Signed in, but everything is read-only                   | You are a member. Ask an administrator for `keera user role <you> admin`.                                                                   |
 | "no organisation matches" at sign-in                     | No organisation has your email domain. Set it with `keera org set <org> --domain <domain>`.                                                 |
-| A request is refused with `org_limited`                  | The organisation signed itself up and has not paid yet.                                                                                     |
-| `keera` talks to the wrong gateway                       | Run `keera whoami` to see which one and why. Use `keera login --url` or `KEERA_CONTROL_URL`.                                                |
 
 ## Logs and metrics
 

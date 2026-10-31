@@ -24,7 +24,8 @@ in with that address.
 For someone without such an account, choose **Signs in with: A passkey**, or
 add `--passkey`. You get a set-up link that works once, for 24 hours. Send it
 to the person privately. The address must be at your organisation's email
-domain; only an operator can add a passkey account at another domain.
+domain, if it has one. Only an operator can add a passkey account at another
+domain.
 
 ```sh
 keera user add ben@example.ch --passkey
@@ -50,11 +51,13 @@ keera user disable ada@example.ch
 
 Or click **Disable** on the **Users** screen. At once:
 
-- they cannot sign in, and all their sessions end
+- they cannot sign in, and all their sign-ins end
 - every key that belongs to them is revoked for good
 - their passkeys are deleted
 - their agent sandboxes, and any not started yet, end; the rest are suspended
 
-Their usage and audit entries keep their name. `keera user enable` lets them
-back in, without their old keys. Someone who signs in with a passkey also
-needs a new [set-up link](#add-a-person).
+Disabled people are hidden from the **Users** screen and from
+`keera user list`; add `--all` to see them. Their usage and audit entries keep
+their name. `keera user enable` lets them back in, without their old keys.
+Someone who signs in with a passkey also needs a new
+[set-up link](#add-a-person).

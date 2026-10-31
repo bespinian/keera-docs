@@ -16,8 +16,9 @@ fingerprint, face or PIN. After that, sign in with **Sign in with a passkey**.
 
 !!! tip "Add a passkey on each device"
 
-    Once signed in with a passkey, open the menu with your name at the bottom
-    of the sidebar and choose **Your passkeys** to add one for another device.
+    Once signed in with a passkey, open the **account menu**, with your name
+    at the bottom of the sidebar, and choose **Your passkeys** to add one for
+    another device.
 
 ### Several organisations
 
@@ -47,7 +48,7 @@ Where there are several ways to sign in, add `--provider`, such as
 | `keera org list`          | lists your organisations                   |
 | `keera org switch <name>` | makes commands act on another organisation |
 
-A sign-in from the terminal lasts 30 days.
+A sign-in lasts 30 days, in the browser and in the terminal.
 
 !!! note "Working over ssh"
 

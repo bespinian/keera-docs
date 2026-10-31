@@ -19,6 +19,18 @@ A developer who says "my agent stopped this afternoon" can find the answer
 here, or on their own [My access](../use/my-access.md) page. Every refusal is
 logged with the message the tool received.
 
+### Failures on the command line
+
+`keera failures` lists the requests that failed, with what the model or the
+gateway said:
+
+```sh
+keera failures                   # failed
+keera failures --kind refused    # refused by the gateway
+keera failures --kind all        # also refused and interrupted ones
+keera failures --status 502      # one status, or a class such as 4xx
+```
+
 ## Sessions
 
 A coding agent turns one instruction into thirty or forty requests. A

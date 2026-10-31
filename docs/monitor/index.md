@@ -2,7 +2,8 @@
 
 Every request through the gateway is written to the request log. All the
 numbers in the panel are counted from it: requests, tokens, cost and how long
-things took. It never holds the text of a prompt or an answer.
+things took. It never holds a prompt or an answer; see
+[What Keera records](../get-started/concepts.md#what-keera-records).
 
 | Screen                                            | Answers                                                     |
 | ------------------------------------------------- | ----------------------------------------------------------- |

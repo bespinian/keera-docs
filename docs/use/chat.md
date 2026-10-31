@@ -8,7 +8,7 @@ other request.
 
 ![Keera Chat with a conversation open: the chats in the sidebar, a reply with a numbered list, and a message with an image.](../assets/images/chat.webp){ .screenshot }
 
-The panel's account menu links to Keera Chat.
+The panel's [account menu](sign-in.md#in-the-browser) links to Keera Chat.
 
 ## Start a chat
 

@@ -33,6 +33,7 @@ its errors carry a type that follows the status, such as `billing_error` for
 | 502    | `mcp_unavailable`                                        | The MCP server could not be reached, or its answer could not be read.            |
 | 502    | `mcp_credential_refused`                                 | The MCP server refused the gateway's credential. An administrator sets it again. |
 | 503    | `no_backend`, `filter_unavailable`                       | A model or filter cannot run right now.                                          |
-| 503    | `router_undecided`, `router_destination_unavailable`     | A router could not place the request.                                            |
+| 503    | `router_undecided`                                       | A route step could not choose, and it has no fallback.                           |
+| 503    | `router_destination_unavailable`                         | None of the router's models can take the request.                                |
 | 503    | `router_unavailable`                                     | A router names something it can no longer use. An administrator fixes it.        |
 | 503    | `control_plane_unavailable`                              | The gateway lost its database for longer than its cache lasts.                   |

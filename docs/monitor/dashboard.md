@@ -29,17 +29,7 @@ Costs come from the prices set on each model, in CHF.
 
 - For a hosted model, this is the provider's list price; see
   [Billing](../manage/billing.md).
-- For your own models, the price is 0 unless you set one, for example to
-  charge teams internally.
+- For your own models, it is the price
+  [set on the model](../manage/models.md#add-your-own-model).
 - A request cut off by the client is charged on an estimate, and marked as
   such in the request log.
-
-## Failures
-
-```sh
-keera failures
-```
-
-lists the requests that failed with a 5xx status, with what the model or the
-gateway said. Add `--kind refused` for requests the gateway refused,
-`--kind interrupted` for ones cut off, or `--kind all`. Each one opens with `keera session show <request-id>`.

@@ -1,4 +1,4 @@
-# Keera Chat
+# Run Keera Chat
 
 How to run [Keera Chat](../use/chat.md) next to your gateway.
 

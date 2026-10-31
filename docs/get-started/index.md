@@ -8,7 +8,7 @@ model.
 flowchart LR
   tools["Your tools<br>Claude Code, Codex,<br>apps, notebooks"] -->|HTTPS + API key| gw
   gw["Keera Gateway"] --> local["Open models<br>Keera Engine"]
-  gw --> hosted["Hosted models<br>Anthropic, OpenAI,<br>Swiss providers"]
+  gw --> hosted["Hosted models<br>Anthropic, OpenAI, Google,<br>Mistral, Swiss providers"]
 ```
 
 Every request goes through the same steps:

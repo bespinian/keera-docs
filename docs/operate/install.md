@@ -10,8 +10,8 @@
 
 Kubernetes runs the image `ghcr.io/bespinian/keera-gateway:<version>`, and
 compose builds the same image from the source. NixOS runs the binary
-natively. All read the same [settings](settings.md). The compose files are in the
-[keera-gateway repository](https://github.com/bespinian/keera-gateway/tree/main/compose).
+natively. All read the same [settings](settings.md). The compose files are in
+the [keera-gateway repository](https://github.com/bespinian/keera-gateway/tree/main/compose).
 
 ## What you need
 
@@ -121,26 +121,15 @@ keera doctor
 ## Models every organisation starts with
 
 `KEERA_MODELS_FILE` names a YAML file with the models each new organisation
-gets a copy of:
-
-```yaml
-models:
-  - alias: keera-speed
-    backends: [http://keera-engine:8000/v1]
-    backend_model: keera-speed
-    max_context_tokens: 16384
-    description: Fast and local. Short edits and everyday work.
-
-  - alias: keera-frontier
-    provider: anthropic
-    backend_model: claude-opus-5-5
-    description: Hosted and expensive. Design and hard reasoning.
-```
+gets a copy of. The format is in
+[Models](../manage/models.md#add-models-from-a-file).
 
 The file holds no API keys. Each organisation's administrator stores the key
-for a hosted model, unless the gateway holds the provider's key itself (see
-[Billing](../manage/billing.md)). Changing the file later does not change
-existing organisations.
+for a hosted model, under **Provider key** or with
+`keera model set <alias> --api-key @-`. That is not needed when the gateway
+holds the provider's key itself; see
+[Hosted providers and billing](settings.md#hosted-providers-and-billing).
+Changing the file later does not change existing organisations.
 
 ## Backups and upgrades
 

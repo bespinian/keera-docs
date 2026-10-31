@@ -1,8 +1,8 @@
 # Connect your tools
 
-Every tool uses the same address, `https://gateway.keera.ch/api`. Give each
-machine and tool a key of its own, so you can replace one without breaking
-the others.
+Every tool talks to `https://gateway.keera.ch/api`; OpenAI clients add `/v1`.
+Give each machine and tool a key of its own, so you can replace one without
+breaking the others.
 
 !!! tip "Let the panel write it for you"
 
@@ -25,8 +25,8 @@ keera connect claude-code
 This gives the machine its own key and writes it into
 `~/.claude/settings.json`, together with every model you may use. The rest of
 the file stays as it was. If you set `CLAUDE_CONFIG_DIR`, it writes
-`settings.json` there instead. Run `claude` in your project, and `/model` switches
-between your models.
+`settings.json` there instead. Run `claude` in your project, and `/model`
+switches between your models.
 
 As a member, the command activates the key an administrator issued for you.
 It cannot use a key you already activated elsewhere, so leave the key for
@@ -52,7 +52,8 @@ keera connect codex         # the settings for ~/.codex/config.toml
 keera connect pi --key laptop
 ```
 
-It also says which file the settings belong in. If that file exists already,
+`--key` picks which of your keys to use, by name or id. Without it, `keera`
+takes your first active key. It also says which file the settings belong in. If that file exists already,
 merge the settings into it rather than replacing it.
 
 ## Any OpenAI client

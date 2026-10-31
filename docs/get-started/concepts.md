@@ -18,8 +18,7 @@ flowchart TB
 - A **project** groups keys, usually by team or product. A new organisation
   starts with a project called `default`.
 - An **API key** is what a tool sends with each request. Every key belongs to
-  one project, and usually to one person. A key lasts 90 days unless you
-  choose otherwise.
+  one project, and usually to one person.
 
 ## Models and aliases
 
@@ -28,19 +27,16 @@ Tools never name a model directly. They name an **alias**, such as
 you can switch to a newer model, or move it to another server, and nobody has
 to change their settings.
 
-A model either runs inside the gateway's private network (**on-premises**) or
-at a provider (**hosted**). Prompts sent to a hosted model leave that network.
+A model either runs inside the gateway's private network (**private**) or
+outside it (**hosted**), usually at a provider. Prompts sent to a hosted model leave that network.
 Keera shows clearly which is which.
 
 ## Guardrails
 
 A **guardrail** says what an organisation, a project or a key may do: which
-models it may use, its budgets and rate limits, a system prompt, filters and
-MCP tools.
-
-**A level can only narrow what it gets from above, never widen it.** If the
-organisation allows three models, a project can allow two of them, but not a
-fourth. See [Guardrails](../manage/guardrails.md).
+models it may use, its budgets and rate limits, a system prompt, filters, MCP
+tools and sandboxes. A level can only narrow what the level above allows; see
+[How levels combine](../manage/guardrails.md#how-levels-combine).
 
 ## Filters and routers
 
