@@ -6,7 +6,7 @@ Keera account, and every message goes through the gateway with one of your
 keys. The same guardrails, budgets, filters and audit log apply as for any
 other request.
 
-![Keera Chat with a conversation open: the chats in the sidebar, a reply with a numbered list, and a message with an image.](../assets/images/chat.webp){ .screenshot }
+![Keera Chat with a conversation open: the chats in the sidebar and a reply with a numbered list.](../assets/images/chat.webp){ .screenshot }
 
 The panel's [account menu](sign-in.md#in-the-browser) links to Keera Chat.
 
