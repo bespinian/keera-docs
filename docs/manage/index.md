@@ -21,9 +21,8 @@ Then, if you need them:
 
 - [Routers](routers.md) pick a model for each request.
 - [MCP servers](mcp.md) give agents tools, under the same controls.
-- [Sandboxes](sandboxes.md) lend machines to developers and coding agents.
 
-!!! info "Routers, filters, MCP and sandboxes are folded away"
+!!! info "Routers, filters and MCP are folded away"
 
     Until your organisation uses them, these screens are folded into one entry
     at the bottom of the sidebar's Organisation group, named after them. Click

@@ -24,14 +24,15 @@ have no usable key, Keera Chat tells you whom to ask.
 
 ## What you can do
 
-- **Stop** a reply, **Answer again**, or **Edit** a message you sent.
-- Attach images, PDFs and text files with **+**. Every model reads text
-  files, up to ten of 512 KB each. Images and PDFs need a model that reads
-  images, because Keera Chat sends each PDF page as an image, up to ten a
-  message.
+- **Stop** a reply (or press Escape), **Answer again**, or **Edit** a message
+  you sent.
+- Attach images (PNG, JPEG, GIF or WebP), PDFs and text files with **+**, or
+  paste or drop them. Every model reads text files, up to ten of 512 KB each.
+  Images and PDFs need a model that reads images. Each PDF page is sent as an
+  image, and a message holds up to ten images in all.
 - Open a model's reasoning with **Show the thought process**, if it shares it.
 - See how full the conversation is in the ring next to the send button. When
-  the model's context is full, start a new chat.
+  it is full, start a new chat or pick a model that reads more.
 - Set **Custom instructions** in the account menu. They are sent with every
   chat.
 - Find old conversations by title with **Search chats** in the sidebar.
@@ -41,19 +42,35 @@ have no usable key, Keera Chat tells you whom to ask.
 - Open the gateway's [My access](my-access.md) with **Keera Gateway**, and
   these pages with **Help**, both in the account menu.
 
+A model's reply is lost if you close the page while it is still being
+written. The browser warns you first. An agent's reply is not lost: it shows
+when you come back.
+
+## Chat with an agent
+
+Your [agents](agents.md) are under **Agents** in the model menu of a new chat.
+You see the running ones you may give work to. The **Chat** button on an agent's page
+in Keera Agents opens such a chat too.
+
+- A chat stays with the agent it started with. You cannot edit a message or
+  ask for another answer.
+- An agent may take minutes to answer, and reads text only.
+- **Stop** also cancels the agent's task.
+- **Show the steps** shows what the agent did, and **Open in Keera Agents**
+  opens the task.
+
 ## Budget and refusals
 
-The account menu shows how much of your tightest budget is spent. If the
-gateway refuses a message, for example because a budget is used up, the chat
-shows why. See [When a request is refused](my-access.md#when-a-request-is-refused).
-
-Your chat usage shows on [My clients](my-access.md#my-clients) as
-**Keera Chat**.
+The account menu shows how much of the tightest budget of your current key is
+spent. If the gateway refuses a message, for example because a budget is used
+up, the chat shows why. See
+[When a request is refused](my-access.md#when-a-request-is-refused).
 
 ## Your chats stay in your browser
 
 Neither Keera Chat nor the gateway stores your conversations. They live in your
-browser, separately for each person and organisation. This means:
+browser, separately for each person and organisation. An agent also keeps its
+chats with you, as [tasks](agents.md#give-it-work). This means:
 
 - **They do not move to another device or browser.** Use **Export chats** and
   **Import chats** in the account menu to take them along. The export file
@@ -64,7 +81,7 @@ browser, separately for each person and organisation. This means:
 - **Clearing the site's data deletes them.** A private window forgets them
   when it closes.
 - **Signing out keeps them.** On a shared computer, use **Delete all chats**
-  first.
+  first. It keeps your custom instructions.
 
 Export, import and delete apply to the current organisation.
 

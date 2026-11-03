@@ -60,8 +60,10 @@ keera connect claude-code --subscription
 
 ## What it costs
 
-- **Your spend is 0.** The plan pays. Budgets are not charged, except for
-  filters, which still run on your own models.
+- **The plan pays for the model.** Budgets count only what the filters cost.
+- **The [gateway fee](../manage/billing.md#the-gateway-fee)**, if you set
+  one, is billed to the organisation. With card payments on, it needs credit,
+  so an organisation without credit cannot use its plan either.
 - **"Covered by Claude plans"** on the dashboard shows what the same requests
   would have cost on Anthropic's API. It tells you whether the plan is worth
   it.

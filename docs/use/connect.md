@@ -6,10 +6,10 @@ breaking the others.
 
 !!! tip "Let the panel write it for you"
 
-    In the panel, open **My clients** and click **Connect client**. Pick your
+    In the panel, open **My access** and click **Connect client**. Pick your
     tool, and the panel shows the exact settings, with the models you may
-    use filled in. Your key is filled in right after you activate it; later,
-    only its start is shown.
+    use filled in. To get your key filled in too, click **Connect a client**
+    right after you activate or rotate it.
 
 ![Connect client shows the settings for each tool.](../assets/images/connect-client.webp){ .screenshot }
 
@@ -24,9 +24,8 @@ keera connect claude-code
 
 This gives the machine its own key and writes it into
 `~/.claude/settings.json`, together with every model you may use. The rest of
-the file stays as it was. If you set `CLAUDE_CONFIG_DIR`, it writes
-`settings.json` there instead. Run `claude` in your project, and `/model`
-switches between your models.
+the file stays as it was. Run `claude` in your project, and `/model` switches
+between your models.
 
 As a member, the command activates the key an administrator issued for you.
 It cannot use a key you already activated elsewhere, so leave the key for
@@ -52,9 +51,10 @@ keera connect codex         # the settings for ~/.codex/config.toml
 keera connect pi --key laptop
 ```
 
-`--key` picks which of your keys to use, by name or id. Without it, `keera`
-takes your first active key. It also says which file the settings belong in. If that file exists already,
-merge the settings into it rather than replacing it.
+`--key` picks one of your keys, by name or id. Without it, `keera` takes your
+first active key. It also says which file the settings belong in. If that file
+exists already, merge the settings into it. These tools read the key from
+`KEERA_API_KEY`, so export it in your shell.
 
 ## Any OpenAI client
 
@@ -113,6 +113,33 @@ To see which models your key may use:
 ```sh
 curl https://gateway.keera.ch/api/v1/models -H "Authorization: Bearer $KEERA_API_KEY"
 ```
+
+## GitLab Duo
+
+GitLab Duo Self-Hosted can send its requests through Keera. In GitLab, under
+**Admin > GitLab Duo > Configure models for GitLab Duo**, set each model to:
+
+| Field            | Value                                                               |
+| ---------------- | ------------------------------------------------------------------- |
+| Endpoint         | `https://gateway.keera.ch/api/v1`                                   |
+| API key          | a Keera key, in a project of its own, such as `gitlab-duo`          |
+| Model identifier | `custom_openai/<alias>`, or `openai/<alias>` for an embedding model |
+| Model family     | the model's family if GitLab lists it, otherwise **General**        |
+
+For a Claude model, use `https://gateway.keera.ch/api` and
+`anthropic/<alias>` instead. Its requests then use prompt caching.
+
+On GitLab's AI Gateway, set:
+
+```sh
+AIGW_CUSTOM_MODELS__ENABLED=true
+AIGW_CUSTOM_MODELS__EXTRA_HEADERS='{"X-Keera-Client": "gitlab-duo"}'
+```
+
+The header makes its requests show as **GitLab Duo** in the reports.
+
+All GitLab users share the one key, so Keera cannot tell them apart. Set the
+guardrails on the key's project.
 
 ## MCP servers
 

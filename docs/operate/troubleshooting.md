@@ -9,7 +9,9 @@ keera doctor --probe    # and send a real request to every model
 
 It reports what is set, what is missing and what does not work, each with a
 fix. It changes nothing, so it is safe on a live gateway. It exits with an
-error when a check fails, so it can end an install script.
+error when a check fails, so it can end an install script. It checks the
+models, filters and routers of one organisation: the one chosen with
+`keera org switch` or `KEERA_ORG`. Without one, it skips them.
 
 ## Common problems
 

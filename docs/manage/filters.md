@@ -120,7 +120,9 @@ first: it is free, and the model filters after it never see what it removed.
 - **A refused request** gets the status `403` and the filter's reason. The
   developer sees it on My access.
 - **What a filter reads:** the text of every message, including tool results,
-  where coding agents send file contents. It does not read images, or the
-  arguments of the tool calls a model makes. On a call to an
-  [MCP server](mcp.md), it reads the arguments.
+  where coding agents send file contents. On a rerank, the query and each
+  document. On a call to an [MCP server](mcp.md), the arguments. It does not
+  read images, audio or files, or the arguments of the tool calls a model makes.
+- **Text it cannot read is refused.** A request with a part the gateway does
+  not know is refused with `400`, so no text gets past the filters.
 - **Nothing a filter read is stored.** Only counts and the outcome are kept.

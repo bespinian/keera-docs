@@ -28,14 +28,14 @@ you can switch to a newer model, or move it to another server, and nobody has
 to change their settings.
 
 A model either runs inside the gateway's private network (**private**) or
-outside it (**hosted**), usually at a provider. Prompts sent to a hosted model leave that network.
-Keera shows clearly which is which.
+outside it (**hosted**), usually at a provider. Prompts sent to a hosted model
+leave that network. Keera shows clearly which is which.
 
 ## Guardrails
 
 A **guardrail** says what an organisation, a project or a key may do: which
-models it may use, its budgets and rate limits, a system prompt, filters, MCP
-tools and sandboxes. A level can only narrow what the level above allows; see
+models it may use, its budgets and rate limits, a system prompt, filters and
+MCP tools. A level can only narrow what the level above allows; see
 [How levels combine](../manage/guardrails.md#how-levels-combine).
 
 ## Filters and routers

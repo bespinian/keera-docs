@@ -22,21 +22,24 @@ KEERA_CHAT_SECRET_KEY=…   # openssl rand -hex 32
 ```
 
 Put TLS in front of it, as for the gateway, and turn off response buffering so
-replies stream.
+replies stream. Keera Chat must run at the root of its host: its addresses take
+no path. `KEERA_CHAT_URL` must differ from the gateway's `KEERA_AGENTS_URL`.
+`/healthz` answers health checks.
 
-| Variable                          | Default                   | What it is                                                                           |
-| --------------------------------- | ------------------------- | ------------------------------------------------------------------------------------ |
-| `KEERA_CHAT_GATEWAY_URL`          | required                  | The gateway's address, as a browser reaches it.                                      |
-| `KEERA_CHAT_SECRET_KEY`           | required                  | Encrypts the sign-in cookie. At least 16 characters. Changing it signs everyone out. |
-| `KEERA_CHAT_PUBLIC_URL`           | `http://127.0.0.1:<port>` | Keera Chat's address, as a browser reaches it. Must match `KEERA_CHAT_URL`.          |
-| `KEERA_CHAT_GATEWAY_INTERNAL_URL` | `KEERA_CHAT_GATEWAY_URL`  | The gateway's address from Keera Chat, if different, such as `http://gateway:8080`.  |
-| `KEERA_CHAT_ADDR`                 | `:8090`                   | The address and port to listen on.                                                   |
-| `KEERA_CHAT_SECURE_COOKIES`       | on for https              | Marks the sign-in cookie `Secure`.                                                   |
-| `KEERA_CHAT_MAX_BODY_BYTES`       | 32 MiB                    | The largest request. Each one carries the whole conversation, attachments included.  |
-| `KEERA_CHAT_LOG_LEVEL`            | `info`                    | `debug`, `info`, `warn` or `error`.                                                  |
-| `KEERA_CHAT_LOG_FORMAT`           | `text`                    | `text` or `json`.                                                                    |
+| Variable                          | Default                   | What it is                                                                                  |
+| --------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------- |
+| `KEERA_CHAT_GATEWAY_URL`          | required                  | The gateway's address, as a browser reaches it.                                             |
+| `KEERA_CHAT_SECRET_KEY`           | required                  | Encrypts the sign-in cookie. At least 16 characters. Changing it signs everyone out.        |
+| `KEERA_CHAT_PUBLIC_URL`           | `http://127.0.0.1:<port>` | Keera Chat's address, as a browser reaches it. Must match `KEERA_CHAT_URL`.                 |
+| `KEERA_CHAT_GATEWAY_INTERNAL_URL` | `KEERA_CHAT_GATEWAY_URL`  | The gateway's address from Keera Chat, if different, such as `http://gateway:8080`.         |
+| `KEERA_CHAT_AGENTS_INTERNAL_URL`  | the gateway's             | Keera Agents' address from Keera Chat, if it differs from the gateway's `KEERA_AGENTS_URL`. |
+| `KEERA_CHAT_ADDR`                 | `:8090`                   | The address and port to listen on.                                                          |
+| `KEERA_CHAT_SECURE_COOKIES`       | on for https              | Marks the sign-in cookie `Secure`.                                                          |
+| `KEERA_CHAT_MAX_BODY_BYTES`       | 32 MiB                    | The largest request, at least 1 MiB. Each one carries the whole conversation and its files. |
+| `KEERA_CHAT_LOG_LEVEL`            | `info`                    | `debug`, `info`, `warn` or `error`.                                                         |
+| `KEERA_CHAT_LOG_FORMAT`           | `text`                    | `text` or `json`.                                                                           |
 
-Keera Chat logs only each request's method, path, status and duration, never
-tokens or messages. The sign-in is kept in an encrypted cookie. Signing out
-also signs out at the gateway, and when the gateway ends a sign-in, Keera Chat
-follows within a minute.
+Keera Chat logs each request's method, path, status and duration, and what
+went wrong on a failure. It never logs tokens or messages. The sign-in is
+kept in an encrypted cookie. Signing out also signs out at the gateway, and
+when the gateway ends a sign-in, Keera Chat follows within a minute.

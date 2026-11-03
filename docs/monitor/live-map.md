@@ -14,6 +14,8 @@ The dashed line is the edge of the gateway's private network:
   request to them crosses the line, so you see at once how much of your
   traffic leaves, and what it costs.
 
+With only hosted models, there is no line, and they take the upper part.
+
 Below the map, two tables list every model with where it runs, and every
 client with its requests, tokens, refusals and cost.
 

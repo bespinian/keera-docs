@@ -83,6 +83,7 @@ https://keera.example.ch/control/auth/callback
 
     Keera checks the username and password against the directory with a
     read-only service account. The connection is always encrypted.
+    `DOMAINS` is required, and cannot be `*`.
 
     ```sh
     KEERA_PUBLIC_URL=https://keera.example.ch
@@ -120,9 +121,10 @@ within that time. If the directory cannot be reached for 12 hours, their
 sign-ins end; the log says "has not answered since". An OpenID Connect provider
 must hand out refresh tokens for this. Keera asks for them with the
 `offline_access` scope, or on Google with offline access. If your provider
-refuses `offline_access`, set `KEERA_OIDC_<NAME>_SCOPES` without it. Then the
-directory is asked only at sign-in, and a sign-in lasts 12 hours instead of 30
-days. GitHub is asked only whether the person still allows Keera.
+refuses `offline_access`, set `KEERA_OIDC_<NAME>_SCOPES=openid,profile,email`.
+Then the directory is asked only at sign-in, and a sign-in lasts 12 hours
+instead of 30 days. GitHub is asked whether the person still allows Keera, and
+whether their address still matches `DOMAINS`.
 
 ## Organisations and domains
 
@@ -145,8 +147,9 @@ every address itself, such as Google.
 **Self sign-up.** On a public gateway, `KEERA_OIDC_<NAME>_SIGNUP=true` lets
 someone with no matching organisation create their own. A new organisation
 starts limited until its first payment; see [Billing](../manage/billing.md).
-Sign-up needs `KEERA_UPSTREAM_PRIVATE` set to a list of host names, not
-`all`. It does not work with admin groups or an LDAP directory.
+Sign-up needs `KEERA_UPSTREAM_PRIVATE` set explicitly: to a list of host
+names, `none` or `all`. It does not work on an LDAP directory, or when any
+provider sets admin groups.
 
 ## Passkeys
 
@@ -159,8 +162,8 @@ KEERA_PASSKEYS=true
 KEERA_PUBLIC_URL=https://keera.example.ch
 ```
 
-Passkeys need `https`, or `http://localhost`. They are tied to the host name,
-so do not change it later.
+Passkeys need `https`, or `http://localhost`, and a host name, not an IP
+address. They are tied to the host name, so do not change it later.
 
 Administrators add people as in
 [Add a person](../manage/users.md#add-a-person). For an address at another

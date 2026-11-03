@@ -29,33 +29,35 @@ every replica runs with it, restart once more, then remove
 | `KEERA_PUBLIC_URL`       | the request's host                   | The address people open, such as `https://keera.example.ch`. Required for single sign-on, passkeys and payments. |
 | `KEERA_MODELS_FILE`      | none                                 | The models each new organisation starts with. See [Install](install.md#models-every-organisation-starts-with).   |
 | `KEERA_METRICS_TOKEN`    | none                                 | A token that may read `/metrics` and nothing else. 16+ characters, and not the operator key.                     |
-| `KEERA_USAGE_RETENTION`  | for ever                             | How long the request log is kept. See [Retention](#retention).                                                   |
+| `KEERA_USAGE_RETENTION`  | for ever                             | How long the request log and ended keys are kept. See [Retention](#retention).                                   |
 | `KEERA_AUDIT_RETENTION`  | for ever                             | How long the audit log is kept.                                                                                  |
 | `KEERA_UPSTREAM_PRIVATE` | `all`                                | The host names inside your network that organisations may reach, such as `keera-engine,keera-decider`.           |
 | `KEERA_UPSTREAM_DENY`    | loopback, link-local, cloud metadata | Addresses no model or MCP server may use. A backend on `127.0.0.1` needs `none` or a shorter list.               |
 
 ## Sign-in
 
-| Variable                                                                 | What it is                                                               |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `KEERA_OIDC_PROVIDERS`                                                   | The names of the identity providers.                                     |
-| `KEERA_OIDC_<NAME>_LABEL`                                                | The text on the provider's sign-in button.                               |
-| `KEERA_OIDC_<NAME>_ISSUER`                                               | The provider's address, or an `ldaps://` or `ldap://` directory.         |
-| `KEERA_OIDC_<NAME>_CLIENT_ID`, `_CLIENT_SECRET`                          | The client registered with the provider.                                 |
-| `KEERA_OIDC_<NAME>_SCOPES`                                               | What Keera asks the provider for. See [Roles](sign-on.md#roles).         |
-| `KEERA_OIDC_<NAME>_LDAP_BIND_DN`, `_LDAP_BIND_PASSWORD`, `_LDAP_BASE_DN` | The service account and search base for a directory.                     |
-| `KEERA_OIDC_<NAME>_LDAP_CA_FILE`                                         | A PEM file of the CAs to trust for a directory, instead of the system's. |
-| `KEERA_OIDC_<NAME>_LDAP_USER_FILTER`                                     | Who in the directory may sign in. The default depends on the directory.  |
-| `KEERA_OIDC_<NAME>_LDAP_LOGIN_ATTRIBUTES`                                | What a person may type as their username, such as `sAMAccountName,mail`. |
-| `KEERA_OIDC_<NAME>_DOMAINS`                                              | The email domains this provider may sign people in with.                 |
-| `KEERA_OIDC_<NAME>_GROUPS_CLAIM`                                         | The claim that holds the groups, such as `roles`.                        |
-| `KEERA_OIDC_<NAME>_ADMIN_GROUPS`                                         | Groups whose members are administrators.                                 |
-| `KEERA_OIDC_<NAME>_OPERATOR_GROUPS`                                      | Groups whose members are operators.                                      |
-| `KEERA_OIDC_<NAME>_DEFAULT_ROLE`                                         | The role of people in no admin or operator group.                        |
-| `KEERA_OIDC_<NAME>_SIGNUP`                                               | Lets people create their own organisation.                               |
-| `KEERA_OPERATORS`                                                        | Email addresses that are operators.                                      |
-| `KEERA_PASSKEYS`                                                         | Turns on passkeys.                                                       |
-| `KEERA_CHAT_URL`                                                         | Lets people sign in to [Keera Chat](chat.md) at this address.            |
+| Variable                                                                 | What it is                                                                                           |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| `KEERA_OIDC_PROVIDERS`                                                   | The names of the identity providers.                                                                 |
+| `KEERA_OIDC_<NAME>_LABEL`                                                | The text on the provider's sign-in button.                                                           |
+| `KEERA_OIDC_<NAME>_ISSUER`                                               | The provider's address, or an `ldaps://` or `ldap://` directory.                                     |
+| `KEERA_OIDC_<NAME>_CLIENT_ID`, `_CLIENT_SECRET`                          | The client registered with the provider.                                                             |
+| `KEERA_OIDC_<NAME>_SCOPES`                                               | What Keera asks the provider for. See [Roles](sign-on.md#roles).                                     |
+| `KEERA_OIDC_<NAME>_LDAP_BIND_DN`, `_LDAP_BIND_PASSWORD`, `_LDAP_BASE_DN` | The service account and search base for a directory.                                                 |
+| `KEERA_OIDC_<NAME>_LDAP_CA_FILE`                                         | A PEM file of the CAs to trust for a directory, instead of the system's.                             |
+| `KEERA_OIDC_<NAME>_LDAP_USER_FILTER`                                     | Who in the directory may sign in. The default depends on the directory.                              |
+| `KEERA_OIDC_<NAME>_LDAP_LOGIN_ATTRIBUTES`                                | What a person may type as their username, such as `sAMAccountName,mail`.                             |
+| `KEERA_OIDC_<NAME>_DOMAINS`                                              | The email domains this provider may sign people in with.                                             |
+| `KEERA_OIDC_<NAME>_GROUPS_CLAIM`                                         | The claim that holds the groups, such as `roles`.                                                    |
+| `KEERA_OIDC_<NAME>_ADMIN_GROUPS`                                         | Groups whose members are administrators.                                                             |
+| `KEERA_OIDC_<NAME>_OPERATOR_GROUPS`                                      | Groups whose members are operators.                                                                  |
+| `KEERA_OIDC_<NAME>_DEFAULT_ROLE`                                         | The role of people in no admin or operator group.                                                    |
+| `KEERA_OIDC_<NAME>_SIGNUP`                                               | Lets people create their own organisation.                                                           |
+| `KEERA_OPERATORS`                                                        | Email addresses that are operators.                                                                  |
+| `KEERA_PASSKEYS`                                                         | Turns on passkeys.                                                                                   |
+| `KEERA_CHAT_URL`                                                         | Lets people sign in to [Keera Chat](chat.md) at this address. No path.                               |
+| `KEERA_AGENTS_URL`                                                       | Lets people sign in to [Keera Agents](agents.md) at this address. No path, and not `KEERA_CHAT_URL`. |
+| `KEERA_AGENTS_SERVICE_KEY`                                               | Lets Keera Agents issue keys for agents. 32+ characters, and unique.                                 |
 
 See [Single sign-on and passkeys](sign-on.md).
 
@@ -87,36 +89,9 @@ See [Single sign-on and passkeys](sign-on.md).
 | `KEERA_PROVIDER_<NAME>_API_KEY`                               | The gateway's own key for a provider, such as `KEERA_PROVIDER_ANTHROPIC_API_KEY`. Every organisation then uses it, at list price, and the panel shows **Billing**. Infomaniak also needs `KEERA_PROVIDER_INFOMANIAK_PRODUCT_ID`. |
 | `KEERA_BILLING_POSTFINANCE_SPACE_ID`, `_USER_ID`, `_AUTH_KEY` | Turns on card payments through PostFinance Checkout.                                                                                                                                                                             |
 | `KEERA_BILLING_POSTFINANCE_URL`                               | PostFinance Checkout's address. The default, `https://checkout.postfinance.ch`, serves test spaces too.                                                                                                                          |
+| `KEERA_BILLING_GATEWAY_FEE`                                   | CHF per million tokens on every model not on the gateway's own keys, such as self-hosted ones. Default 0, at most 100. With payments on, it stops every organisation without credit, even on its own models.                     |
 | `KEERA_BILLING_VAT`                                           | VAT added to each payment, in percent.                                                                                                                                                                                           |
 | `KEERA_CLAUDE_SUBSCRIPTIONS`                                  | Lets Claude Code on a Claude plan through. See [Claude plans](claude-plans.md).                                                                                                                                                  |
-
-## Sandboxes
-
-Sandboxes are off unless `KEERA_SANDBOX_DRIVER` is set.
-
-| Variable                                    | What it is                                                                                                             |
-| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `KEERA_SANDBOX_DRIVER`                      | `kubernetes` for real use, `podman` for local development.                                                             |
-| `KEERA_SANDBOXES_FILE`                      | The sandbox classes each new organisation starts with.                                                                 |
-| `KEERA_SANDBOX_NAMESPACE`                   | The Kubernetes namespace for sandboxes. Use one of their own.                                                          |
-| `KEERA_SANDBOX_PUBLIC_URL`                  | The gateway as a sandbox reaches it, usually the in-cluster service.                                                   |
-| `KEERA_SANDBOX_RUNTIME_ISOLATED`, `_VM`     | The runtime classes for gVisor and Kata.                                                                               |
-| `KEERA_SANDBOX_GIT_FORGE`                   | `github` or `gitlab`, for repository access.                                                                           |
-| `KEERA_SANDBOX_GIT_APP_ID`, `_APP_KEY_FILE` | The GitHub App, required for `github`.                                                                                 |
-| `KEERA_SANDBOX_GIT_TOKEN_FILE`              | The access token, required for `gitlab`.                                                                               |
-| `KEERA_SANDBOX_GIT_URL`                     | GitHub Enterprise's API (`https://<host>/api/v3`), or your GitLab instance.                                            |
-| `KEERA_SANDBOX_IMAGES`                      | Image prefixes administrators may give a class, such as `registry.internal/keera/`.                                    |
-| `KEERA_SANDBOX_IDLE_SUSPEND`                | Suspends an engineer's sandbox after this long without a connection. At least `5m`.                                    |
-| `KEERA_SANDBOX_STORAGE_CLASS`               | On Kubernetes, the storage class of a sandbox's disk.                                                                  |
-| `KEERA_SANDBOX_SERVICE_ACCOUNT`             | On Kubernetes, the service account a sandbox runs as. Its token is never mounted.                                      |
-| `KEERA_SANDBOX_IMAGE_PULL_SECRETS`          | On Kubernetes, the pull secrets for images in a private registry.                                                      |
-| `KEERA_SANDBOX_WARM`                        | On Kubernetes, keeps machines started, so a new sandbox is ready at once. Needs the agent-sandbox warm-pool extension. |
-| `KEERA_SANDBOX_PODMAN_BINARY`, `_NETWORK`   | With `podman`, the command to run and the network sandboxes join.                                                      |
-
-An administrator can give a class the image of a class from
-`KEERA_SANDBOXES_FILE`, an image under `KEERA_SANDBOX_IMAGES`, or the image the
-class already has. Any other image needs an operator, because sandboxes pull
-with the deployment's credentials.
 
 ## Retention
 
@@ -130,4 +105,4 @@ KEERA_AUDIT_RETENTION=17520h    # keep two years of the audit log
 
 Values below `24h` are refused. Daily totals are always kept, so usage charts
 over long periods still work after old requests are deleted. A request log row
-is about 1 KB with its indexes.
+is about 750 bytes with its indexes, plus about 300 bytes per filter that ran.

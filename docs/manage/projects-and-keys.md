@@ -14,8 +14,8 @@ keera project create "Payments Platform" --description "Card and account service
 ```
 
 A new organisation starts with a project called `default`. You can rename it.
-A project can only be deleted once all its keys are revoked and all its
-sandboxes have ended. Expired keys and suspended sandboxes still count.
+A project can only be deleted once all its keys are revoked. Expired keys
+still count.
 
 ## Issue a key
 
@@ -28,7 +28,7 @@ Open **API keys** and click **Issue key**.
 | Name    | What the key is for, such as `Ada's laptop` or `CI pipeline`. Reports show this name.                                                   |
 | Project | The project the key belongs to, and whose guardrails it follows.                                                                        |
 | User    | The person the key belongs to. Leave it empty for a pipeline.                                                                           |
-| Expires | 90 days by default. You can pick another lifetime, a date, or never.                                                                    |
+| Expires | 90 days by default. You can pick 30 days, 1 year, a date, or never.                                                                     |
 | Secret  | Shown when the key is for someone else. **They activate it and see it once** (the default) means only that person ever sees the secret. |
 
 On the command line:
@@ -56,6 +56,10 @@ here you can:
   [Rotate or revoke a key](../use/my-access.md#rotate-or-revoke-a-key).
 - Click **Guardrails** to give one key its own limits, inside its project's.
 - Click the pencil to rename it.
+
+A key marked **Keera Agent** belongs to an [agent](../use/agents.md). It
+cannot be rotated. To stop the agent, see
+[Stop an agent](../use/agents.md#stop-an-agent).
 
 ```sh
 keera key list                  # --all adds revoked keys

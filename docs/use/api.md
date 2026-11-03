@@ -9,6 +9,8 @@ the same request log.
 | OpenAI Chat Completions | `POST /api/v1/chat/completions`      | most tools and SDKs            |
 | OpenAI Completions      | `POST /api/v1/completions`           | older tools, code completion   |
 | OpenAI Embeddings       | `POST /api/v1/embeddings`            | search and retrieval           |
+| Rerank                  | `POST /api/v1/rerank`                | search and retrieval           |
+| Cohere Rerank           | `POST /api/v2/rerank`                | the Cohere SDK                 |
 | Anthropic Messages      | `POST /api/v1/messages`              | Claude Code, the Anthropic SDK |
 | Anthropic token count   | `POST /api/v1/messages/count_tokens` | Claude Code                    |
 | OpenAI Responses        | `POST /api/v1/responses`             | Codex                          |
@@ -18,8 +20,9 @@ the same request log.
 
 Put the name of a model or router in the `model` field. A chat model works
 with Chat Completions, Messages and Responses: the gateway translates between
-them. A completion model only works with Completions, and an embedding model
-only with Embeddings.
+them. A completion model only works with Completions, an embedding model only
+with Embeddings, and a rerank model only with Rerank. A
+[decision model](../manage/models.md#model-kinds) cannot be called at all.
 
 Every endpoint and field is in the [API reference](../reference/api/index.md).
 
@@ -66,4 +69,5 @@ Send your key in one of these headers:
 ## Errors
 
 Errors come in the format of the API you called. See
-[Errors](../reference/errors.md) for every code.
+[Errors](../reference/errors.md) for every code. When the model itself
+answers with an error, you get its status and message unchanged.

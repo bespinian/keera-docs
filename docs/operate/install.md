@@ -42,11 +42,13 @@ podman compose up -d --build
 This starts the gateway, Postgres, a small coding model on the CPU (Keera
 Engine on llama.cpp) and Keera Decider, a small model that helps routers
 decide. The model downloads on the first start; watch it with
-`podman compose logs -f keera-engine`. Every setting in `.env` reaches the
-gateway.
+`podman compose logs -f keera-engine`. The other settings in `.env` reach the
+gateway, except the database, the models file and the port, which compose
+sets itself.
 
 Open <http://localhost:8080> and sign in with the operator key. Then continue
-with [First run](#first-run).
+with [First run](#first-run). The port listens on `127.0.0.1` only. To reach
+it from other machines, set `KEERA_BIND=0.0.0.0` in `.env`.
 
 !!! note "The CPU model cannot make tool calls"
 
@@ -60,8 +62,8 @@ sudo nvidia-ctk cdi generate --output=/etc/cdi/nvidia.yaml   # once
 podman compose -f compose.yaml -f compose.gpu.yaml up -d --build
 ```
 
-The default GPU model is Qwen2.5-Coder-7B, about 5.6 GB, which fits a 24 GB
-card.
+Every later `podman compose` command needs the same two `-f` flags. The
+default GPU model is Qwen2.5-Coder-7B, about 5.6 GB, which fits a 24 GB card.
 
 ## Publish it
 
@@ -71,7 +73,6 @@ One port, `8080`, carries everything. Paths tell the parts apart:
 | ---------- | ------------------------------------------------------------------------------------------ |
 | `/api`     | the inference API and MCP servers, for API keys                                            |
 | `/control` | the control API, for the panel and `keera`                                                 |
-| `/sandbox` | connections to sandboxes                                                                   |
 | `/`        | the control panel, and `/metrics`, `/healthz`, `/readyz`, `/openapi.json`, `/openapi.yaml` |
 
 When you put it on the network:

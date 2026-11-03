@@ -22,9 +22,9 @@ fingerprint, face or PIN. After that, sign in with **Sign in with a passkey**.
 
 ### Several organisations
 
-If you belong to more than one organisation, the top right of the panel shows
-a menu instead of the organisation's name. Pick an organisation there to
-switch. Invitations to other organisations show up in the same menu.
+The organisation you work in shows under your name, at the bottom of the
+sidebar. If you belong to more than one, or are invited to another, a menu at
+the top right lets you switch, or accept the invitation.
 
 ## In the terminal
 

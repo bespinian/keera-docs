@@ -3,9 +3,10 @@
 ## Requests
 
 **Requests** is the request log: one row per request, newest first. Filter it
-by model, project, key, person or status, or search for a request id. Click a
-column such as **Cost** or **Tokens** to rank the whole time window by it.
-**Live** shows new requests as they arrive.
+by model, project, key, person, status or outcome, or search for a request id.
+Click a column such as **Cost (CHF)** or **Tokens** to rank the whole time
+window by it.
+**Live** shows new requests as they arrive, and **CSV** downloads them.
 
 ![The request log](../assets/images/requests.webp){ .screenshot }
 
@@ -39,7 +40,7 @@ cost: "CHF 1.20, eleven minutes, 41 requests".
 
 ![The sessions screen](../assets/images/sessions.webp){ .screenshot }
 
-Click **Cost**, **Tokens**, **Requests** or **Duration** to find the tasks
+Click **Cost (CHF)**, **Tokens**, **Requests** or **Duration** to find the tasks
 worth a closer look. The latest task is rarely the interesting one.
 
 Opening a session shows its requests in order, with one bar per request,

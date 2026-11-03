@@ -20,18 +20,17 @@ The first time, you either create an organisation or join one:
 
 ![Getting started shows a short checklist for a new organisation.](../assets/images/getting-started.webp){ .screenshot }
 
-## 2. Add credit
-
-A new organisation starts limited until its first payment. Open **Billing**
-and click **Add credit**. See
-[Billing](../manage/billing.md) and the
-[prices](https://keera.ch/en/pricing).
-
-## 3. Issue a key
+## 2. Issue a key
 
 Open **API keys** and click **Issue key**. Give the key a name, such as
 `my laptop`, and click **Issue key** in the dialog. Copy the secret now: it is
 [shown only once](../manage/projects-and-keys.md#issue-a-key).
+
+## 3. Add credit
+
+A new organisation starts limited until its first payment. Open **Billing**
+and click **Add credit**. See [Billing](../manage/billing.md) and the
+[prices](https://keera.ch/en/pricing).
 
 ## 4. Send a request
 

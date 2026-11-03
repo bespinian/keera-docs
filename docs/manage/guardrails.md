@@ -5,15 +5,14 @@ broad rules on the organisation, and narrow them for each project or key.
 
 ## What a guardrail holds
 
-| Part              | What it does                                                                                                                                                   |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Models**        | The models and routers that may be called. Not set means "whatever the level above allows"; an empty list allows none.                                         |
-| **Budgets**       | The most money to spend per day or per month, in CHF.                                                                                                          |
-| **Rate limits**   | The most requests or tokens per minute, day or month.                                                                                                          |
-| **System prompt** | An instruction put in front of every chat request.                                                                                                             |
-| **Filters**       | [Filters](filters.md) that run on every request.                                                                                                               |
-| **MCP tools**     | The [MCP](mcp.md) servers and tools that may be called.                                                                                                        |
-| **Sandboxes**     | How many [sandboxes](sandboxes.md#for-administrators) a project may run, of which classes, how large, for how long, and which repositories they may check out. |
+| Part              | What it does                                                                                                                               |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Models**        | The models and routers that may be called, by name or [by location](#models-by-location). Not set means "whatever the level above allows". |
+| **Budgets**       | The most money to spend per day or per month, in CHF.                                                                                      |
+| **Rate limits**   | The most requests or tokens per minute, day or month.                                                                                      |
+| **System prompt** | An instruction put in front of every chat request.                                                                                         |
+| **Filters**       | [Filters](filters.md) that run on every request.                                                                                           |
+| **MCP tools**     | The [MCP](mcp.md) servers and tools that may be called.                                                                                    |
 
 A level may have several budgets and rate limits, one per period. For example
 a budget per day next to one per month. Each must hold.
@@ -34,12 +33,36 @@ a budget per day next to one per month. Each must hold.
 A level that sets nothing is not unlimited. It gets whatever the level above
 it sets.
 
+## Models by location
+
+Instead of naming models, you can allow every model that runs in some places,
+such as Switzerland (`ch`), the European Union (`eu`) or the gateway's private
+network (`onprem`). The **Models** screen shows where each model runs. A place
+matches only itself: `eu` does not include `ch`. A model with no location is
+allowed by none.
+
+In the panel, add a **Models** block and choose **By location**, or **By name
+and location** to allow only some models in those places. On the command
+line:
+
+```sh
+keera guardrail set project "Payments Platform" --locations ch,onprem
+```
+
+A model added later is allowed or not by where it runs. The limit also holds
+for everything else that reads your prompts:
+
+- A [router](routers.md) is allowed only when every model it may send to, or
+  decide with, runs in those places.
+- A [filter](filters.md) that runs somewhere else stops the request with
+  `403 location_not_allowed`, rather than send it there. Keera refuses to
+  save such a guardrail.
+
 ## Set a guardrail in the panel
 
 On **Projects**, click **Guardrails** on a project, or **Organisation
 guardrails** at the top. On **API keys**, click **Guardrails** on a key. Each
-part is a block in the dialog: add the ones you need. Sandboxes are set
-[on the command line](sandboxes.md#for-administrators).
+part is a block in the dialog: add the ones you need.
 
 ![The guardrails dialog](../assets/images/guardrails.webp){ .screenshot }
 

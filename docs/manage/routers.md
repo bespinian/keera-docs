@@ -18,14 +18,14 @@ Use a router to:
 
 A router is a tree of steps. A request enters on the left and ends at a model.
 
-| Step              | What it does                                                                                             |
-| ----------------- | -------------------------------------------------------------------------------------------------------- |
-| **Route**         | picks one model from a list                                                                              |
-| **Filter**        | runs one of your [filters](filters.md)                                                                   |
-| **Budget**        | counts what passes; over the budget, takes its "over" branch, or refuses with `402` if it has none       |
-| **Rate limit**    | counts requests or tokens; over the limit, takes its "over" branch, or refuses with `429` if it has none |
-| **System prompt** | adds an instruction to the requests that pass                                                            |
-| **Model**         | sends the request to one model                                                                           |
+| Step              | What it does                                                                                                   |
+| ----------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Route**         | picks one model from a list                                                                                    |
+| **Filter**        | runs one of your [filters](filters.md)                                                                         |
+| **Budget**        | counts what passes; over the budget, takes its "over limit" branch, or refuses with `402` if it has none       |
+| **Rate limit**    | counts requests or tokens; over the limit, takes its "over limit" branch, or refuses with `429` if it has none |
+| **System prompt** | adds an instruction to the requests that pass                                                                  |
+| **Model**         | sends the request to one model                                                                                 |
 
 ![The router editor draws the steps as a tree.](../assets/images/router-editor.webp){ .screenshot }
 

@@ -1,6 +1,6 @@
 [project]
 site_name = "Keera"
-site_description = "User documentation for Keera Gateway and Keera Chat."
+site_description = "User documentation for Keera Gateway, Keera Chat and Keera Agents."
 site_author = "bespinian GmbH"
 site_url = "https://docs.keera.ch/"
 copyright = "Copyright &copy; 2026 bespinian GmbH"
@@ -22,6 +22,7 @@ nav = [
     "use/my-access.md",
     "use/playground.md",
     "use/chat.md",
+    "use/agents.md",
     "use/api.md",
   ] },
   { "Manage" = [
@@ -33,7 +34,6 @@ nav = [
     "manage/filters.md",
     "manage/routers.md",
     "manage/mcp.md",
-    "manage/sandboxes.md",
     "manage/billing.md",
   ] },
   { "Monitor" = [
@@ -47,6 +47,7 @@ nav = [
     "operate/install.md",
     "operate/sign-on.md",
     "operate/chat.md",
+    "operate/agents.md",
     "operate/claude-plans.md",
     "operate/settings.md",
     "operate/troubleshooting.md",
@@ -142,6 +143,7 @@ pymdownx.tabbed.combine_header_slug = true
 markdown_description = """
 Keera Gateway at https://gateway.keera.ch sits between your tools and the AI models they use.
 Keera Chat is a chat app on top of it at https://chat.keera.ch.
+Keera Agents runs AI agents that people give work in chats, on a board or on a schedule.
 The API is described by the [OpenAPI spec](https://gateway.keera.ch/openapi.json).
 """
 full_output = "llms-full.txt"
@@ -160,6 +162,7 @@ full_output = "llms-full.txt"
   "use/my-access.md",
   "use/playground.md",
   "use/chat.md",
+  "use/agents.md",
   "use/api.md",
 ]
 "Manage" = [
@@ -171,7 +174,6 @@ full_output = "llms-full.txt"
   "manage/filters.md",
   "manage/routers.md",
   "manage/mcp.md",
-  "manage/sandboxes.md",
   "manage/billing.md",
 ]
 "Monitor" = [
@@ -189,6 +191,7 @@ full_output = "llms-full.txt"
   "operate/install.md",
   "operate/sign-on.md",
   "operate/chat.md",
+  "operate/agents.md",
   "operate/claude-plans.md",
   "operate/settings.md",
   "operate/troubleshooting.md",

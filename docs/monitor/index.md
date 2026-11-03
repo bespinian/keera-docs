@@ -14,7 +14,7 @@ things took. It never holds a prompt or an answer; see
 
 **Administrators** see everything in their organisation. **Members** see the
 organisation's dashboard and usage, but only their own requests, sessions and
-live map.
+live map, and no audit log.
 
 ## Audit log
 
@@ -25,5 +25,5 @@ router checks are recorded too, so you can show when a model last worked.
 
 ![The audit log](../assets/images/audit-log.webp){ .screenshot }
 
-Filter it by time and by kind of change. **View** shows the full entry, and
+Filter it by time, person and kind of change. **View** shows the full entry, and
 **CSV** downloads the list.

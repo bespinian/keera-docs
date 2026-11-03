@@ -24,9 +24,11 @@ that is where prompts go.
 
 ![The model catalogue](../assets/images/catalogue.webp){ .screenshot }
 
-1. Click **Add** on a model.
+1. Click a model.
 2. Enter the alias.
 3. Click **Add model**.
+
+The catalogue also has embedding and rerank models; filter by **Kinds**.
 
 The model uses the gateway's key; see [Billing](billing.md).
 
@@ -54,13 +56,31 @@ For a model you run yourself, such as Keera Engine on vLLM, click
 - the **backend model**: the name your server serves the model under (vLLM's
   `--served-model-name`)
 - the **context window** in tokens
-- input and output **prices**. Requests count against budgets at these
-  prices; with 0, budgets never limit the model
+- under **Advanced options**, the **location**, such as `ch`, if the backend
+  is on a public address. Keera needs it to apply
+  [guardrails by location](guardrails.md#models-by-location).
+- under **Advanced options**, the [**kind**](#model-kinds), if it is not a
+  chat model
+
+You set no prices. A self-hosted model costs only the
+[gateway fee](billing.md#the-gateway-fee), which the form shows.
 
 ```sh
 keera model add my-coder --backend https://llm.example.ch/v1 \
-  --backend-model qwen2.5-coder --max-context-tokens 32768
+  --backend-model qwen2.5-coder --max-context-tokens 32768 --location ch
 ```
+
+## Model kinds
+
+| Kind           | What it does                                                                                                                                                |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Chat**       | Answers messages. The default.                                                                                                                              |
+| **Completion** | Continues a text, for code completion.                                                                                                                      |
+| **Embedding**  | Turns text into vectors, for search.                                                                                                                        |
+| **Rerank**     | Ranks documents against a query.                                                                                                                            |
+| **Decision**   | Decides, but writes no text, such as Keera Decider. Only [gate filters](filters.md) and instruction [route steps](routers.md) use it. Tools cannot call it. |
+
+[The API](../use/api.md) says which endpoint takes which kind.
 
 ## Write a good description
 
@@ -106,6 +126,7 @@ models:
     backends: [https://llm.example.ch/v1]
     backend_model: qwen2.5-coder
     max_context_tokens: 32768
+    location: ch
     description: Fast and our own. Short edits and everyday work.
 
   - alias: keera-frontier

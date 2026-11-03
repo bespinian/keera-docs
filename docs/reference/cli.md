@@ -27,15 +27,16 @@ command takes `--json`, and every command `--color auto`, `always` or `never`.
 | `keera filter`    | filters: add, change, check, report, delete                               |
 | `keera router`    | routers: add, show, change, check, report, delete                         |
 | `keera mcp`       | MCP servers and their tool calls                                          |
-| `keera sandbox`   | sandboxes and sandbox classes                                             |
 | `keera usage`     | usage and cost, by model, client, project, key, user or day               |
 | `keera session`   | tasks of coding agents                                                    |
 | `keera failures`  | requests that did not succeed, by kind or status, such as `--status 5xx`  |
-| `keera billing`   | the bill and credit for the gateway's own provider keys                   |
+| `keera billing`   | the bill, credit and recurring charges                                    |
 | `keera version`   | the version of the command                                                |
 
-Some commands are for operators only, such as `keera org delete`,
-`keera org set --lift-limit`, `keera billing grant` and `keera billing invoiced`.
+Some commands are for operators only: `keera org create`, `keera org set` and
+`keera org delete`, and `keera billing grant`, `invoiced`, `charge` and
+`end-charge`. On the public instance, you create an organisation when you
+[first sign in](../get-started/quickstart.md#1-sign-in).
 
 ## Which gateway and organisation
 

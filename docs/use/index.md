@@ -13,4 +13,5 @@ company runs its own gateway, use its address instead.
 
 The [Playground](playground.md) lets you try a model in the browser, and
 [The API](api.md) explains what your tools can call. To just chat, use
-[Keera Chat](chat.md).
+[Keera Chat](chat.md). To hand work to an assistant, use
+[Keera Agents](agents.md).

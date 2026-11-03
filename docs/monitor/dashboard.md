@@ -29,7 +29,7 @@ Costs come from the prices set on each model, in CHF.
 
 - For a hosted model, this is the provider's list price; see
   [Billing](../manage/billing.md).
-- For your own models, it is the price
-  [set on the model](../manage/models.md#add-your-own-model).
+- For a self-hosted model, it is the
+  [gateway fee](../manage/billing.md#the-gateway-fee).
 - A request cut off by the client is charged on an estimate, and marked as
   such in the request log.
