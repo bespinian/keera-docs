@@ -15,8 +15,9 @@ KEERA_AGENTS_SERVICE_KEY=…   # openssl rand -hex 32
 
 The first lets people sign in to Keera Agents, and links to it from the
 panel. It must differ from `KEERA_CHAT_URL`. The second lets Keera Agents
-issue and revoke keys for agents, look up people, and read the organisation's
-projects, models, routers and MCP servers. It must be at least 32 characters,
+issue and revoke keys for agents, look up people, read the organisation's
+projects, models, routers and MCP servers, and
+[bill machines](#bill-machines). It must be at least 32 characters,
 and differ from the gateway's other secrets.
 
 On Keera Agents:
@@ -32,30 +33,64 @@ KEERA_AGENTS_IMAGE=registry.example.ch/keera-agent:<version>
 KEERA_AGENTS_RUNTIME_URL=http://keera-agents.keera:8070
 ```
 
-Back up `KEERA_AGENTS_SECRET_KEY` with the database. It encrypts the
-connectors' credentials and the agents' keys. Without it, the credentials
-cannot be read. Changing it signs everyone out. It must be at least 16
-characters.
+`KEERA_AGENTS_SECRET_KEY` encrypts the connectors' credentials and the agents'
+keys. Changing it signs everyone out. It must be at least 16 characters.
 
 `KEERA_AGENTS_DRIVER` is `kubernetes` or `podman`. Without it, people can
 create agents, but none runs.
 
 ## The agent image
 
-Each agent runs `KEERA_AGENTS_IMAGE`. Build it from the keera-agents source
-with `make agent-image`, push it to your registry, and upgrade it together
-with Keera Agents.
+Each agent runs `KEERA_AGENTS_IMAGE`, and each
+[workspace](../use/workspaces.md) `KEERA_AGENTS_WORKSPACE_IMAGE`. Each release
+publishes both at `ghcr.io/bespinian/keera-agent:<tag>` and
+`ghcr.io/bespinian/keera-workspace:<tag>`, for `linux/amd64` only. On `arm64`,
+build them from the keera-agents source with `make agent-image` and
+`make workspace-image`. Upgrade them together with Keera Agents.
+
+## Bill machines
+
+To bill organisations for their agents' and workspaces' machines, set prices
+in CHF on Keera Agents:
+
+```sh
+KEERA_AGENTS_PRICE_CPU_HOUR=0.05
+KEERA_AGENTS_PRICE_MEMORY_GIB_HOUR=0.006
+KEERA_AGENTS_PRICE_DISK_GIB_MONTH=0.12
+```
+
+Any price above 0 turns billing on. The gateway needs nothing more than the
+service key. Machines then appear on the gateway's
+[bill](../manage/billing.md#agents-and-workspaces) and take from its credit.
+An organisation the gateway would refuse starts no machine, and its running
+ones are suspended once idle.
+
+## Back up and upgrade
+
+Back up three things on the same schedule:
+
+- **The database**, with `pg_dump`.
+- **`KEERA_AGENTS_SECRET_KEY`**, apart from it, in your secret store. Without
+  it, connectors must be entered again.
+- **The workspaces' volumes**: on Kubernetes, the PVCs labelled
+  `app.kubernetes.io/managed-by=keera-agents`; on podman, the volumes named
+  `keera-agent-…-workspace`. They hold agents' memory, chats and unpushed work.
+
+The schema migrates at start. Take a backup before you upgrade: a release
+refuses to start against a database a newer one migrated, so going back means
+restoring it.
 
 ## Publish it
 
 Keera Agents listens on port `8070` (`KEERA_AGENTS_ADDR`):
 
-| Path                  | Who calls it                                          |
-| --------------------- | ----------------------------------------------------- |
-| `/`, `/api`, `/auth`  | people's browsers                                     |
-| `/hooks`              | chat services such as Slack, from the internet        |
-| `/runtime`            | the agents' containers, so keep it inside the cluster |
-| `/healthz`, `/readyz` | health checks                                         |
+| Path                 | Who calls it                                          |
+| -------------------- | ----------------------------------------------------- |
+| `/`, `/api`, `/auth` | people's browsers                                     |
+| `/hooks`             | chat services such as Slack, from the internet        |
+| `/runtime`           | the agents' containers, so keep it inside the cluster |
+| `/healthz`           | liveness, answers before the schema migrates          |
+| `/readyz`            | readiness, answers 503 until ready                    |
 
 ## Settings
 
@@ -73,6 +108,8 @@ Keera Agents listens on port `8070` (`KEERA_AGENTS_ADDR`):
 | `KEERA_AGENTS_WATCH_INTERVAL`                                       | `5m`                                 | How often watched folders are checked. At least `30s`.                                                                                             |
 | `KEERA_AGENTS_UPSTREAM_PRIVATE`                                     | `none`                               | Host names inside your network that connectors may reach, such as a GitLab server, or `all`.                                                       |
 | `KEERA_AGENTS_UPSTREAM_DENY`                                        | loopback, link-local, cloud metadata | Addresses no connector may use.                                                                                                                    |
+| `KEERA_AGENTS_WORKSPACE_IDLE_SUSPEND`                               | `2h`                                 | How long a workspace nobody is connected to stays awake.                                                                                           |
+| `KEERA_AGENTS_PRICE_*`                                              | unset: machines are free             | What machine time costs. See [Bill machines](#bill-machines).                                                                                      |
 | `KEERA_AGENTS_LOG_LEVEL`, `_LOG_FORMAT`                             | `info`, `text`                       | As on the gateway.                                                                                                                                 |
 
 ## On Kubernetes
@@ -82,10 +119,3 @@ Give the agents a namespace of their own (`KEERA_AGENTS_NAMESPACE`), with a
 network policy that denies everything by default. Keera Agents needs a Role
 there. `KEERA_AGENTS_STORAGE_CLASS`, `_SERVICE_ACCOUNT` and
 `_IMAGE_PULL_SECRETS` set what the agents' pods get.
-
-## Keera Chat
-
-When the gateway has both `KEERA_CHAT_URL` and `KEERA_AGENTS_URL`, people can
-chat with their agents in Keera Chat. If Keera Chat cannot reach Keera Agents
-at `KEERA_AGENTS_URL`, set
-[`KEERA_CHAT_AGENTS_INTERNAL_URL`](chat.md) on Keera Chat.

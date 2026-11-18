@@ -23,6 +23,7 @@ nav = [
     "use/playground.md",
     "use/chat.md",
     "use/agents.md",
+    "use/workspaces.md",
     "use/api.md",
   ] },
   { "Manage" = [
@@ -129,8 +130,6 @@ pymdownx.details = {}
 pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
 pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
 pymdownx.highlight.pygments_lang_class = true
-pymdownx.magiclink = {}
-pymdownx.smartsymbols = {}
 pymdownx.superfences.custom_fences = [
   { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
 ]
@@ -163,6 +162,7 @@ full_output = "llms-full.txt"
   "use/playground.md",
   "use/chat.md",
   "use/agents.md",
+  "use/workspaces.md",
   "use/api.md",
 ]
 "Manage" = [

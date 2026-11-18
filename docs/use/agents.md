@@ -10,6 +10,11 @@ owner's name. So the owner's guardrails, budgets, filters and audit log apply.
 Open it with **Keera Agents** in the panel's
 [account menu](sign-in.md#in-the-browser), and sign in as you do in the panel.
 
+<iframe class="video" src="https://www.youtube-nocookie.com/embed/1C9HsUVr8Bk" title="Keera Agents" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+
+For a machine of your own with a coding agent, see
+[Workspaces](workspaces.md).
+
 ## Create an agent
 
 Open **Agents** and click **New agent**:
@@ -25,7 +30,9 @@ Open **Agents** and click **New agent**:
 | **Monthly budget in CHF** | The most its model calls may cost per month. Once spent, the gateway refuses its calls, so its tasks fail until the next month. |
 
 **Machine** sets how isolated it runs (**Standard**, **Isolated** or **VM**),
-and its CPU, memory and disk.
+and its CPU, memory and disk. Its size sets
+[what it costs](../manage/billing.md#agents-and-workspaces). Without credit,
+it does not start, and its waiting tasks fail with the reason.
 
 You are its owner. What it spends counts as yours. Everyone in the
 organisation sees every agent, but only its owner or an administrator can
@@ -43,11 +50,13 @@ change, stop or delete it.
 | **A folder**   | A new or changed file in a watched Google Drive or OneDrive folder starts a task.                                                                                 |
 
 When several agents share one bot, start the message with the agent's name,
-such as `Scout: …` or `@Scout`.
+such as `Scout: …` or `@Scout`. If the answer takes more than 10 seconds, the
+agent first says in the thread that it is working on it.
 
-An agent connected to a GitHub or GitLab repository can code in it. It pushes
-branches that start with `keera/` and opens a pull or merge request for a
-person to review. It cannot push to any other branch.
+An agent connected to a GitHub or GitLab repository can code in it, if it has
+the **Shell** tool. It pushes branches that start with `keera/` and opens a
+pull or merge request for a person to review. It cannot push to any other
+branch.
 
 Besides its tools, an agent can post updates to its chats, create and move
 cards on the board, and comment on issues and pull or merge requests.
@@ -63,24 +72,30 @@ own agents. Administrators see all. Tasks are deleted after 90 days.
 ## Connect it to a service
 
 An administrator adds a **connector** for each service, under **Connectors**,
-such as the organisation's Slack app or GitHub token. Then, on an agent's
-**Channels** tab, its owner or an administrator clicks **Add channel**, picks
-the connector and a mode:
+such as the organisation's Slack app, GitHub token or Jira account. Then, on an
+agent's **Connectors** tab, its owner or an administrator clicks **Add
+connector**, picks the connector, what it may reach there, and a mode:
 
-- **Chat**: it takes messages in a chat.
-- **Watch**: each new or changed file in a folder is a task.
+- **Chat**: it answers messages in a chat.
+- **Watch**: each new file in a folder is a task.
 - **Files**: it may read and write files in a folder.
-- **Repository**: it may code in a repository.
+- **Repository**: it may clone a repository, push `keera/` branches and open
+  pull requests.
+- **Read**, or **Read and write**: it may look things up in a service, such as
+  a Jira project or an AWS region, and with write, make changes.
 
 The service's credentials stay in Keera Agents. They never reach the agent's
-machine.
+machine. A connector's page shows which agents use it.
+
+A member may connect their own agent to any folder a shared connector reaches.
+So give a shared file connector only folders everyone may read.
 
 ## Stop an agent
 
 - **Stop** on the agent's page stops its machine and cancels its tasks. Its
   files and memory are kept. **Start** runs it again.
 - **Delete agent**, at the bottom of **Settings**, removes its machine, files,
-  memory, channels and schedules, and revokes its key. Its tasks stay.
+  memory, connectors and schedules, and revokes its key. Its tasks stay.
 
 Its key shows as **Agent <name>**, marked **Keera Agent**, on the gateway's
 **API keys** screen. It cannot be rotated. Revoking it makes the agent's model

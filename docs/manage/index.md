@@ -20,7 +20,7 @@ A good order to set up a new organisation:
 Then, if you need them:
 
 - [Routers](routers.md) pick a model for each request.
-- [MCP servers](mcp.md) give agents tools, under the same controls.
+- [MCP servers](mcp.md) put tool calls under the same controls.
 
 !!! info "Routers, filters and MCP are folded away"
 

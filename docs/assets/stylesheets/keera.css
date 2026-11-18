@@ -46,6 +46,14 @@ body {
   box-shadow: 0 2px 12px rgb(0 0 0 / 6%);
 }
 
+/* Embedded videos fill the text column at 16:9. */
+.md-typeset iframe.video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 10px;
+}
+
 /* Keera beside the intro on the landing page. On a phone there is no room
    beside her, so she sits above the text instead. */
 @media screen and (max-width: 44.9375em) {

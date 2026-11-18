@@ -14,6 +14,8 @@ Use a router to:
 - redact only the requests that go to a hosted model
 - switch to a private model once the hosted budget is spent
 
+<iframe class="video" src="https://www.youtube-nocookie.com/embed/bQbtoC4KQpY" title="Keera Gateway - Routers" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+
 ## The steps
 
 A router is a tree of steps. A request enters on the left and ends at a model.
@@ -47,7 +49,24 @@ to the private model.
 
 Only **instruction** reads what the request says. It reads each model's
 description, so [write good descriptions](models.md#write-a-good-description)
-first.
+first. They decide more than the instruction.
+
+In the instruction, say which kind of request goes where, and which way to err:
+
+```text title="route.txt"
+Send small, simple requests to the cheapest model, such as a rename or a commit
+message.
+
+Send requests that need planning or reasoning to a more capable model.
+
+If you are unsure, choose the more capable model.
+```
+
+A single sentence or a question makes the model choose worse.
+
+An instruction step is no data boundary: it sometimes sends a request naming a
+client to the hosted model. To keep client data in, put a
+[filter](filters.md) on the hosted model's branch.
 
 ### Route by header
 
@@ -79,7 +98,7 @@ On the command line, a router with one route step:
 # Let a small model decide
 keera router add auto --model keera-speed \
   --destinations keera-speed,keera-frontier --fallback keera-speed \
-  --prompt "Which model should answer this request?" --display-name Auto
+  --prompt @route.txt --display-name Auto
 
 # By size: up to 4,000 tokens to the private model, the rest to the hosted one
 keera router add bysize --mode size --destinations keera-speed:4k,keera-frontier
@@ -127,6 +146,11 @@ loosen them.
 instruction step and shows where each went, and how sure the deciding model
 was. For the other route steps, it checks that each model answers. For a header
 step, it also shows which values go to each model.
+
+When a real prompt went to the wrong model, click **Try** on the router's
+screen, or run `keera router try <alias> <prompt>...`. It works like a
+[filter's try](filters.md#check-and-try), and also shows each model's
+share of the vote, so a close call shows as one.
 
 Mistakes in routing are quiet: every request still gets an answer. So watch
 the router's screen. It shows how requests were split between models, how

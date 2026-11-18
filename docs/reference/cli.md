@@ -3,9 +3,7 @@
 `keera` does everything the panel does, from a terminal. To install it, see
 [Sign in](../use/sign-in.md#in-the-terminal).
 
-`keera help <command>` explains each command and its flags. Every listing
-command takes `--json`, and every command `--color auto`, `always` or `never`.
-`--no-color` is short for `--color never`.
+`keera help <command>` explains each command and its flags.
 
 ## Commands
 
@@ -14,9 +12,9 @@ command takes `--json`, and every command `--color auto`, `always` or `never`.
 | `keera login`     | sign in through the browser                                               |
 | `keera logout`    | sign this machine out                                                     |
 | `keera whoami`    | who you are signed in as, and on which gateway                            |
-| `keera connect`   | set up an editor or agent for this gateway                                |
+| `keera connect`   | set up a tool, such as Claude Code, for this gateway                      |
 | `keera doctor`    | check the deployment and say what is missing                              |
-| `keera org`       | organisations: list, switch, create, set, delete                          |
+| `keera org`       | organisations: list, switch                                               |
 | `keera project`   | projects in your organisation                                             |
 | `keera user`      | people and their roles                                                    |
 | `keera key`       | API keys: create, activate, list, change, rotate, revoke                  |
@@ -24,19 +22,15 @@ command takes `--json`, and every command `--color auto`, `always` or `never`.
 | `keera guardrail` | what an organisation, project or key may do                               |
 | `keera limit`     | one scope's rate limits                                                   |
 | `keera budget`    | one scope's budgets                                                       |
-| `keera filter`    | filters: add, change, check, report, delete                               |
-| `keera router`    | routers: add, show, change, check, report, delete                         |
+| `keera filter`    | filters: add, change, check, try, report, delete                          |
+| `keera router`    | routers: add, show, change, check, try, report, delete                    |
 | `keera mcp`       | MCP servers and their tool calls                                          |
 | `keera usage`     | usage and cost, by model, client, project, key, user or day               |
 | `keera session`   | tasks of coding agents                                                    |
 | `keera failures`  | requests that did not succeed, by kind or status, such as `--status 5xx`  |
 | `keera billing`   | the bill, credit and recurring charges                                    |
+| `keera workspace` | [workspaces](../use/workspaces.md): create, open, forward, SSH            |
 | `keera version`   | the version of the command                                                |
-
-Some commands are for operators only: `keera org create`, `keera org set` and
-`keera org delete`, and `keera billing grant`, `invoiced`, `charge` and
-`end-charge`. On the public instance, you create an organisation when you
-[first sign in](../get-started/quickstart.md#1-sign-in).
 
 ## Which gateway and organisation
 
@@ -56,20 +50,16 @@ KEERA_ORG="Example Bank" keera usage --by project
 
 ## Settings it reads
 
-| Variable             | What it is                                                        |
-| -------------------- | ----------------------------------------------------------------- |
-| `KEERA_CONTROL_URL`  | the gateway to talk to                                            |
-| `KEERA_OPERATOR_KEY` | act with the operator key instead of your sign-in, for automation |
-| `KEERA_ORG`          | the organisation to act on                                        |
-| `KEERA_CONFIG_DIR`   | where sign-ins are stored                                         |
-| `NO_COLOR`           | turns colours off; output is coloured only on a terminal anyway   |
-| `CLICOLOR_FORCE`     | colours the output even when it is not a terminal                 |
-| `CLAUDE_CONFIG_DIR`  | where `keera connect claude-code` writes, instead of `~/.claude`  |
+| Variable            | What it is                                                       |
+| ------------------- | ---------------------------------------------------------------- |
+| `KEERA_CONTROL_URL` | the gateway to talk to                                           |
+| `KEERA_ORG`         | the organisation to act on                                       |
+| `KEERA_CONFIG_DIR`  | where sign-ins are stored                                        |
+| `CLAUDE_CONFIG_DIR` | where `keera connect claude-code` writes, instead of `~/.claude` |
 
 ## In scripts
 
-- `--json` gives machine-readable output.
+- Every listing command takes `--json` for machine-readable output.
 - Commands that ask for confirmation take `--yes`.
 - Secrets can be read from standard input with `@-`, so they stay out of the
   shell history: `keera mcp set github --api-key @-`.
-- `keera doctor` exits with an error when a check fails.

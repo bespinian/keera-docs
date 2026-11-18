@@ -6,6 +6,8 @@ Keera account, and every message goes through the gateway with one of your
 keys. The same guardrails, budgets, filters and audit log apply as for any
 other request.
 
+<iframe class="video" src="https://www.youtube-nocookie.com/embed/P1jcDy8auR4" title="Keera Chat" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+
 ![Keera Chat with a conversation open: the chats in the sidebar and a reply with a numbered list.](../assets/images/chat.webp){ .screenshot }
 
 The panel's [account menu](sign-in.md#in-the-browser) links to Keera Chat.
@@ -49,8 +51,8 @@ when you come back.
 ## Chat with an agent
 
 Your [agents](agents.md) are under **Agents** in the model menu of a new chat.
-You see the running ones you may give work to. The **Chat** button on an agent's page
-in Keera Agents opens such a chat too.
+You see the running ones you may give work to. The **Chat** button on an
+agent's page in Keera Agents opens such a chat too.
 
 - A chat stays with the agent it started with. You cannot edit a message or
   ask for another answer.

@@ -29,7 +29,7 @@ to change their settings.
 
 A model either runs inside the gateway's private network (**private**) or
 outside it (**hosted**), usually at a provider. Prompts sent to a hosted model
-leave that network. Keera shows clearly which is which.
+leave that network.
 
 ## Guardrails
 

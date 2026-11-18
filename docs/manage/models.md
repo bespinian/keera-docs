@@ -17,10 +17,10 @@ between slashes.
 ## Add a hosted model
 
 Open **Models** and click **Add model**. The **model catalogue** lists every
-model the built-in providers offer: Anthropic, OpenAI, Google, Mistral, and the
-Swiss providers Infomaniak, stepping stone, Phoeniqs and CSCS. It shows each
-model's context window, location and list prices. Narrow it by location first:
-that is where prompts go.
+model the built-in providers offer: Anthropic, OpenAI, Google, DeepSeek,
+Mistral, PeakPrivacy, and the Swiss providers Infomaniak, stepping stone,
+Phoeniqs and CSCS. It shows each model's context window, location and list
+prices. Narrow it by location first: that is where prompts go.
 
 ![The model catalogue](../assets/images/catalogue.webp){ .screenshot }
 
@@ -43,12 +43,14 @@ keera model add keera-frontier --provider anthropic --backend-model claude-opus-
 
     Before you offer one, decide who may use it, and set a budget and a
     [filter](filters.md). Swiss providers keep prompts in Switzerland, and
-    Mistral in the EU. Anthropic, OpenAI and Google send them to the USA.
+    Mistral in the EU. PeakPrivacy runs each model in Switzerland or the EU;
+    the catalogue shows which. Anthropic, OpenAI and Google send prompts to
+    the USA, and DeepSeek to China.
 
 ## Add your own model
 
 For a model you run yourself, such as Keera Engine on vLLM, click
-**Self-hosted model** above the catalogue. Enter:
+**Add self-hosted model**. Enter:
 
 - the **alias** and a short **description**
 - the **backend URL**, which the gateway must reach, such as
@@ -85,11 +87,12 @@ keera model add my-coder --backend https://llm.example.ch/v1 \
 ## Write a good description
 
 The description tells people what the model is for. [Routers](routers.md) also
-read it to choose a model, so write it for that:
+read it to choose a model, so describe the requests it should get, not the
+model:
 
 ```sh
 keera model set keera-speed --description \
-  "Fast and private. Short edits, syntax questions, everyday work."
+  "Short, simple requests: renames, syntax questions, commit messages and one-line edits."
 ```
 
 ## Check a model
@@ -127,10 +130,10 @@ models:
     backend_model: qwen2.5-coder
     max_context_tokens: 32768
     location: ch
-    description: Fast and our own. Short edits and everyday work.
+    description: Short, simple requests, such as renames and one-line edits.
 
   - alias: keera-frontier
     provider: anthropic
     backend_model: claude-opus-5-5
-    description: Hosted and expensive. Design and hard reasoning.
+    description: Design, architecture and multi-step reasoning.
 ```

@@ -54,8 +54,8 @@ def collapsed(summary, lines):
 
 def title(tag):
     words = tag.replace("-", " ").split()
-    words = [ACRONYMS.get(word, word) for word in words]
-    return " ".join(words)[:1].upper() + " ".join(words)[1:]
+    text = " ".join(ACRONYMS.get(word, word) for word in words)
+    return text[:1].upper() + text[1:]
 
 
 class Writer:
@@ -220,7 +220,7 @@ def index_page(spec, writer):
         "# API reference",
         "",
         "Every endpoint of Keera Gateway, generated from its",
-        "[OpenAPI spec](https://gateway.keera.ch/openapi.json). To get started,",
+        f"[OpenAPI spec]({SPEC}). To get started,",
         "see [The API](../../use/api.md). Errors are listed in",
         "[Errors](../errors.md).",
         "",

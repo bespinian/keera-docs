@@ -14,8 +14,8 @@ keera project create "Payments Platform" --description "Card and account service
 ```
 
 A new organisation starts with a project called `default`. You can rename it.
-A project can only be deleted once all its keys are revoked. Expired keys
-still count.
+A project can only be deleted once all its keys are revoked, expired ones
+too.
 
 ## Issue a key
 
@@ -57,8 +57,7 @@ here you can:
 - Click **Guardrails** to give one key its own limits, inside its project's.
 - Click the pencil to rename it.
 
-A key marked **Keera Agent** belongs to an [agent](../use/agents.md). It
-cannot be rotated. To stop the agent, see
+A key marked **Keera Agent** belongs to an agent. See
 [Stop an agent](../use/agents.md#stop-an-agent).
 
 ```sh
@@ -67,8 +66,3 @@ keera key rotate "Ada's laptop"
 keera key revoke "Ada's laptop"
 keera key set "Ada's laptop" --name "Ada's old laptop"
 ```
-
-## When someone leaves
-
-Disable the person on the **Users** screen. All their keys are revoked at
-once. See [Users and roles](users.md#when-someone-leaves).

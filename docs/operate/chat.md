@@ -13,6 +13,9 @@ On the gateway, set `KEERA_CHAT_URL` so people can sign in to Keera Chat:
 KEERA_CHAT_URL=https://chat.example.ch
 ```
 
+With [`KEERA_AGENTS_URL`](agents.md) set too, people can also chat with their
+agents.
+
 On Keera Chat:
 
 ```sh
@@ -23,8 +26,7 @@ KEERA_CHAT_SECRET_KEY=…   # openssl rand -hex 32
 
 Put TLS in front of it, as for the gateway, and turn off response buffering so
 replies stream. Keera Chat must run at the root of its host: its addresses take
-no path. `KEERA_CHAT_URL` must differ from the gateway's `KEERA_AGENTS_URL`.
-`/healthz` answers health checks.
+no path. `/healthz` answers health checks.
 
 | Variable                          | Default                   | What it is                                                                                  |
 | --------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------- |

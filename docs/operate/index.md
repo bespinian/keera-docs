@@ -14,8 +14,7 @@ single sign-on.
    themselves.
 3. To give everyone a chat in the browser, [run Keera Chat](chat.md). For
    agents, [run Keera Agents](agents.md). To let a Claude plan pay for
-   Claude Code, set up
-   [Claude plans](claude-plans.md).
+   Claude Code, set up [Claude plans](claude-plans.md).
 4. Look up any setting in [Settings](settings.md).
 5. When something does not work, start with
    [Troubleshooting](troubleshooting.md).
@@ -30,5 +29,5 @@ an organisation that [signed up](sign-on.md#organisations-and-domains) on its
 own, as `keera org set --lift-limit` does.
 
 With card payments on, operators can **Grant credit**, **Bill by invoice** and
-**Add recurring charge** on an organisation's **Billing**. The commands are
+**Add recurring charge** on an organisation's **Billing**, or with
 `keera billing grant`, `invoiced`, `charge` and `end-charge`.

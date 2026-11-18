@@ -51,12 +51,13 @@ Your tool shows the message the gateway sent, with a code.
 [Errors](../reference/errors.md) says what each code means. What to do about
 the most common ones:
 
-| Code                                 | What to do                                                                        |
-| ------------------------------------ | --------------------------------------------------------------------------------- |
-| `budget_exceeded`                    | Wait until the date shown, or ask an administrator for more.                      |
-| `credit_exhausted`, `org_limited`    | Ask an administrator to [add credit](../manage/billing.md#pay-in-advance).        |
-| `charge_due`                         | Ask an administrator to [pay the charge](../manage/billing.md#recurring-charges). |
-| `rate_limit_exceeded`                | Wait a moment. The tool usually retries.                                          |
-| `filter_refused`                     | Remove what the filter names, such as a password, and try again.                  |
-| `model_not_found`                    | Check the name against the models on My access.                                   |
-| `expired_api_key`, `revoked_api_key` | Ask for a new key, or [activate](#activate-a-key) the one waiting for you.        |
+| Code                              | What to do                                                                        |
+| --------------------------------- | --------------------------------------------------------------------------------- |
+| `budget_exceeded`                 | Wait until the date shown, or ask an administrator for more.                      |
+| `credit_exhausted`, `org_limited` | Ask an administrator to [add credit](../manage/billing.md#pay-in-advance).        |
+| `charge_due`                      | Ask an administrator to [pay the charge](../manage/billing.md#recurring-charges). |
+| `rate_limit_exceeded`             | Wait a moment. The tool usually retries.                                          |
+| `filter_refused`                  | Remove what the filter names, such as a password, and try again.                  |
+| `model_not_found`                 | Check the name against the models on My access.                                   |
+| `expired_api_key`                 | [Rotate](#rotate-or-revoke-a-key) the key.                                        |
+| `revoked_api_key`                 | Ask for a new key, or [activate](#activate-a-key) the one waiting for you.        |

@@ -115,7 +115,7 @@ sign-on. See [Single sign-on](sign-on.md#organisations-and-domains).
 Then check the models and the whole deployment:
 
 ```sh
-keera model check keera-speed
+keera model check <alias>   # each model
 keera doctor
 ```
 

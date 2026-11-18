@@ -30,7 +30,9 @@ gateway's private network.
 - **A chat for everyone.** [Keera Chat](use/chat.md) at chat.keera.ch, under
   the same guardrails.
 - **Agents.** [Keera Agents](use/agents.md) runs assistants that people give
-  work in a chat, on a board or on a schedule, under the same guardrails.
+  work in a chat, on a board or on a schedule, and
+  [workspaces](use/workspaces.md) with a coding agent, under the same
+  guardrails.
 - **A full record.** Every request is logged with its cost and outcome. No
   prompt is ever stored.
 
@@ -78,6 +80,6 @@ gateway's private network.
 
 ## More of Keera
 
-Besides the gateway, the chat and the agents, Keera has **Keera Engine**, which serves
-open-weight coding models on your own GPUs or on Swiss ones. Learn more on
-[keera.ch](https://keera.ch).
+Besides the gateway, the chat and the agents, Keera has **Keera Engine**,
+which serves open-weight coding models on your own GPUs or on Swiss ones.
+Learn more on [keera.ch](https://keera.ch).

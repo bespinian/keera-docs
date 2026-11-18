@@ -16,7 +16,7 @@ the same request log.
 | OpenAI Responses        | `POST /api/v1/responses`             | Codex                          |
 | Model list              | `GET /api/v1/models`                 | any of them                    |
 | One model               | `GET /api/v1/models/<alias>`         | any of them                    |
-| MCP servers             | `/api/mcp/<alias>`                   | agents that call tools         |
+| MCP servers             | `/api/mcp/<alias>`                   | MCP clients                    |
 
 Put the name of a model or router in the `model` field. A chat model works
 with Chat Completions, Messages and Responses: the gateway translates between
@@ -24,7 +24,8 @@ them. A completion model only works with Completions, an embedding model only
 with Embeddings, and a rerank model only with Rerank. A
 [decision model](../manage/models.md#model-kinds) cannot be called at all.
 
-Every endpoint and field is in the [API reference](../reference/api/index.md).
+Every endpoint and field is in the [API reference](../reference/api/index.md),
+and every error code in [Errors](../reference/errors.md).
 
 !!! note "Nothing is stored"
 
@@ -65,9 +66,3 @@ Send your key in one of these headers:
 | `X-Keera-Removed-Tools`          | tools the provider runs itself, removed on the gateway's keys; see [Billing](../manage/billing.md#what-is-fixed-or-turned-off) |
 | `X-Keera-Removed-Fields`         | fields that cost extra, removed on the gateway's keys; see [Billing](../manage/billing.md#what-is-fixed-or-turned-off)         |
 | `X-Request-Id`                   | the request's id; search for it on the Requests screen                                                                         |
-
-## Errors
-
-Errors come in the format of the API you called. See
-[Errors](../reference/errors.md) for every code. When the model itself
-answers with an error, you get its status and message unchanged.

@@ -3,6 +3,8 @@
 Use Keera on the public instance at <https://gateway.keera.ch> and send a
 first request in five minutes.
 
+<iframe class="video" src="https://www.youtube-nocookie.com/embed/iQ2n-lESx_o" title="Keera Gateway - Getting Started" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+
 ## 1. Sign in
 
 Open <https://gateway.keera.ch> and sign in.

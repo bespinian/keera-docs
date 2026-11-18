@@ -4,10 +4,11 @@ Tool calls send data out just like model calls do: to an issue tracker, a chat
 channel or a cloud API. So Keera Gateway can sit in front of
 [MCP](https://modelcontextprotocol.io) servers too.
 
-An agent reaches a server at `https://gateway.keera.ch/api/mcp/<alias>` with
-its normal Keera key. The gateway then:
+A client, such as Claude Code or an [agent](../use/agents.md), reaches a
+server at `https://gateway.keera.ch/api/mcp/<alias>` with its normal Keera
+key. The gateway then:
 
-- shows the agent only the tools its key may call
+- shows the client only the tools its key may call
 - runs the key's [filters](filters.md) on what each call sends
 - adds the server's credential, which never reaches a laptop
 - records every call: tool, outcome, time and size, but never the content
@@ -29,7 +30,7 @@ For a server that wants another header, add `--auth-header X-Api-Key`.
 Only remote servers that speak MCP over HTTP can go through the gateway. A
 server that runs as a local process on a laptop never passes it.
 
-## Connect an agent
+## Connect a client
 
 `keera mcp connect github` prints the settings for Claude Code, Codex and
 other clients. See [Connect your tools](../use/connect.md#mcp-servers).
@@ -46,7 +47,7 @@ keera guardrail set project "Payments Platform" --tools github/search_code
 
 Each level narrows the one above. If no level sets a list, a key may call
 every tool of every server. A tool the key may not call is hidden from the
-agent.
+client.
 
 A tool call counts as one request against the key's rate limits.
 

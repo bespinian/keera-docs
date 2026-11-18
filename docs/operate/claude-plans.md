@@ -76,3 +76,11 @@ keera connect claude-code --subscription
 A subscription key reaches only subscription models. It cannot call routers,
 MCP servers or the playground, and a subscription model cannot be used by a
 filter or a router.
+
+## Errors
+
+| Status | Code                                         | What it means                                                            |
+| ------ | -------------------------------------------- | ------------------------------------------------------------------------ |
+| 400    | `subscription_model`                         | A subscription model only answers the Anthropic Messages API.            |
+| 401    | `subscription_key`, `missing_claude_sign_in` | The request lacks the Keera key or the Claude sign-in, or mixes them up. |
+| 403    | `subscriptions_off`                          | `KEERA_CLAUDE_SUBSCRIPTIONS` is not on.                                  |

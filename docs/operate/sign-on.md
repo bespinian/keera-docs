@@ -62,6 +62,13 @@ https://keera.example.ch/control/auth/callback
     KEERA_OIDC_ENTRA_OPERATOR_GROUPS=keera-operators
     ```
 
+    To admit people from every Microsoft tenant, choose a multi-tenant
+    option, and put `organizations` (work and school accounts), `consumers`
+    (personal accounts) or `common` (both) in the issuer instead of the tenant
+    ID. Then `KEERA_OIDC_ENTRA_DOMAINS` is required, `*` is allowed, and admin
+    and operator groups are refused: name operators in `KEERA_OPERATORS` and
+    make administrators in Keera.
+
 === "GitHub"
 
     Create an **OAuth App** (not a GitHub App) on your GitHub organisation,

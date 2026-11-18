@@ -10,7 +10,8 @@ key of your own. Only administrators see **Billing**.
 **Billing** shows one row per provider model, with calls, tokens and the
 amount in CHF. Prices a provider lists in USD are converted at a fixed rate.
 Rows marked **gateway fee** are for [your own models](#the-gateway-fee).
-**CSV** downloads it.
+[Machines](#agents-and-workspaces) follow in a table of their own. **CSV**
+downloads it.
 
 ```sh
 keera billing                  # this month
@@ -31,11 +32,26 @@ a fixed price per million tokens, for passing through the gateway. Keera sets
 it. Every token costs the same: input, output or cached. The model form shows
 the fee under **Advanced options**.
 
+## Agents and workspaces
+
+[Agents](../use/agents.md) and [workspaces](../use/workspaces.md) run on
+machines in Keera Agents. They are on the same bill and take from the same
+credit as models:
+
+- **CPU and memory** count while a machine runs.
+- **Disk** counts while it exists, stopped too, until it is deleted.
+
+Each counts by the size set for the machine, not by what it uses. **Billing**
+in Keera Agents shows each machine's time and cost this month. An agent's or
+workspace's page shows what it cost this month and what an hour of it running
+costs.
+
 ## Pay in advance
 
 Your organisation buys credit before it uses the gateway's keys. Each call
-takes its price from the credit, and so does the gateway fee. When the credit
-is used up, calls that cost money are refused with `402 credit_exhausted`.
+takes its price from the credit, and so do the gateway fee and machines. When
+the credit is used up, calls that cost money are refused with
+`402 credit_exhausted`, and no agent or workspace starts.
 
 **Add credit** in **Billing**, or:
 
@@ -76,7 +92,8 @@ credit.
 
 Such a plan needs a saved card. While a period is due and no saved card can
 pay it, because there is none or it was declined, **every call** of the
-organisation is refused with `402 charge_due`, your own models too.
+organisation is refused with `402 charge_due`, your own models too, and no
+agent or workspace starts.
 
 **Pay now** in **Billing** pays the period and saves the card for the periods
 after. Do it before the first period starts, and nothing stops.
@@ -97,6 +114,5 @@ Until its first payment, it can use only
 addresses, nothing inside the gateway's private network. Calls that cost
 money, the gateway fee too, also need credit.
 
-The first payment lifts the limit. Credit that Keera grants
-can be used, but does not lift the limit. A banner in the panel says what is
-still waiting.
+The first payment lifts the limit. Credit that Keera grants can be used, but
+does not lift the limit. A banner in the panel says what is still waiting.

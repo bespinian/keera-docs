@@ -10,18 +10,16 @@ unchanged, except a conversation that is too long.
 | ------ | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | 400    | `context_length_exceeded`                                | The conversation is too long for the model. Agents shorten it and retry.                           |
 | 400    | `missing_model`, `invalid_body`, `unsupported_parameter` | The request is not valid.                                                                          |
-| 400    | `subscription_model`                                     | A Claude plan model only answers the Anthropic Messages API.                                       |
 | 400    | `router_undecided`                                       | A header step got no value it knows. The message lists the values.                                 |
 | 401    | `missing_api_key`, `invalid_api_key`                     | No key, or a key the gateway does not know.                                                        |
-| 401    | `expired_api_key`, `revoked_api_key`                     | The key has expired or was revoked. Get a new one.                                                 |
-| 401    | `subscription_key`, `missing_claude_sign_in`             | A [Claude plan](../operate/claude-plans.md) request is set up wrong.                               |
+| 401    | `expired_api_key`                                        | The key has expired. Rotate it.                                                                    |
+| 401    | `revoked_api_key`                                        | The key was revoked. Get a new one.                                                                |
 | 402    | `budget_exceeded`                                        | A budget is used up. The message says when it resets.                                              |
 | 402    | `credit_exhausted`                                       | The prepaid credit is used up. See [Billing](../manage/billing.md).                                |
 | 402    | `charge_due`                                             | A [recurring charge](../manage/billing.md#recurring-charges) needs paying.                         |
 | 403    | `filter_refused`                                         | A filter stopped the request. The message gives its reason.                                        |
 | 403    | `org_limited`                                            | The organisation must pay once before it can use this.                                             |
 | 403    | `location_not_allowed`                                   | A filter runs outside the [locations](../manage/guardrails.md#models-by-location) the key may use. |
-| 403    | `subscriptions_off`                                      | The gateway does not take Claude plans.                                                            |
 | 404    | `model_not_found`                                        | No such model, or the key may not use it.                                                          |
 | 404    | `not_found`                                              | No such path under `/api`.                                                                         |
 | 404    | `wrong_base_url`                                         | The client's base URL is missing `/api`.                                                           |
@@ -32,7 +30,7 @@ unchanged, except a conversation that is too long.
 | 429    | `rate_limit_exceeded`, `token_rate_limit_exceeded`       | Too many requests or tokens this minute. Wait for `Retry-After`.                                   |
 | 429    | `requests_quota_exceeded`, `tokens_quota_exceeded`       | The daily or monthly limit is used up.                                                             |
 | 502    | `upstream_unavailable`, `upstream_error`                 | The model could not be reached, or its answer could not be read.                                   |
-| 502    | `filter_failed`                                          | A filter's model failed, so the request was stopped.                                               |
+| 502    | `filter_failed`                                          | A filter's model failed, or a rewrite filter tried to refuse, so the request was stopped.          |
 | 502    | `mcp_unavailable`                                        | The MCP server could not be reached, or its answer could not be read.                              |
 | 502    | `mcp_credential_refused`                                 | The MCP server refused the gateway's credential. An administrator sets it again.                   |
 | 503    | `no_backend`, `filter_unavailable`                       | A model or filter cannot run right now.                                                            |
