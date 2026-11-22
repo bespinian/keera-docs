@@ -30,7 +30,7 @@ keera workspace create api --vscode
 ```sh
 keera workspace open api           # in your browser, until Ctrl+C
 keera workspace forward api 3000   # a port in it, such as a dev server
-keera workspace ssh-config         # once per computer
+keera workspace configure-ssh      # once per computer
 ssh api.keera                      # ssh, scp, VS Code Remote-SSH, JetBrains
 ```
 

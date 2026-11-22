@@ -28,8 +28,12 @@
 | `keera usage`     | usage and cost, by model, client, project, key, user or day               |
 | `keera session`   | tasks of coding agents                                                    |
 | `keera failures`  | requests that did not succeed, by kind or status, such as `--status 5xx`  |
+| `keera audit`     | who changed what, by action, person or period                             |
 | `keera billing`   | the bill, credit and recurring charges                                    |
-| `keera workspace` | [workspaces](../use/workspaces.md): create, open, forward, SSH            |
+| `keera agent`     | [agents](../use/agents.md): create, change, ask, start, stop, logs, cost  |
+| `keera task`      | the tasks agents were given: list, follow, cancel                         |
+| `keera schedule`  | tasks on a timetable: create, change, run now, preview                    |
+| `keera workspace` | [workspaces](../use/workspaces.md): create, open, forward, SSH, logs      |
 | `keera version`   | the version of the command                                                |
 
 ## Which gateway and organisation

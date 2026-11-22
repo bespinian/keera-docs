@@ -40,14 +40,15 @@ change, stop or delete it.
 
 ## Give it work
 
-| Where          | How                                                                                                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A chat**     | Write to it in Microsoft Teams, Google Chat or Slack. In a channel, mention the bot. It answers in the thread.                                                    |
-| **Keera Chat** | Pick the agent in the model menu of a new chat, or click **Chat** on the agent's page. See [Keera Chat](chat.md).                                                 |
-| **The panel**  | Click **Give a task** on the agent's page.                                                                                                                        |
-| **The board**  | Assign a card to it in **To do**. It moves the card to **In progress**, then comments with the result and moves it to **Review**, or to **Backlog** if it failed. |
-| **A schedule** | Under **Schedules**, give it the same task at set times, such as every weekday at 08:00, or by a cron expression. The result can go to a chat.                    |
-| **A folder**   | A new or changed file in a watched Google Drive or OneDrive folder starts a task.                                                                                 |
+| Where            | How                                                                                                                                                               |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A chat**       | Write to it in Microsoft Teams, Google Chat or Slack. In a channel, mention the bot. It answers in the thread.                                                    |
+| **Keera Chat**   | Pick the agent in the model menu of a new chat, or click **Chat** on the agent's page. See [Keera Chat](chat.md).                                                 |
+| **The panel**    | Click **Give a task** on the agent's page.                                                                                                                        |
+| **The board**    | Assign a card to it in **To do**. It moves the card to **In progress**, then comments with the result and moves it to **Review**, or to **Backlog** if it failed. |
+| **A schedule**   | Under **Schedules**, give it the same task at set times, such as every weekday at 08:00, or by a cron expression. The result can go to a chat.                    |
+| **A folder**     | A new or changed file in a watched Google Drive or OneDrive folder starts a task.                                                                                 |
+| **The terminal** | `keera agent ask scout "…" --wait`, with the [keera CLI](../reference/cli.md).                                                                                    |
 
 When several agents share one bot, start the message with the agent's name,
 such as `Scout: …` or `@Scout`. If the answer takes more than 10 seconds, the
