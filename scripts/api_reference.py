@@ -187,8 +187,13 @@ class Writer:
 
         body = op.get("requestBody")
         if body:
-            schema = body["content"]["application/json"]["schema"]
-            lines += collapsed("Request body", self.fields(schema, show_required=True))
+            # JSON when the operation takes it, else its first kind, such as a
+            # multipart form.
+            content = body["content"]
+            kind = "application/json" if "application/json" in content else next(iter(content))
+            summary = "Request body" if kind == "application/json" else f"Request body ({kind})"
+            schema = content[kind].get("schema", {})
+            lines += collapsed(summary, self.fields(schema, show_required=True))
 
         rows = ["| Status | Description |", "| --- | --- |"]
         bodies = []
