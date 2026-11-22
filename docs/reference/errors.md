@@ -12,7 +12,7 @@ unchanged, except a conversation that is too long.
 | 400    | `missing_model`, `invalid_body`, `unsupported_parameter` | The request is not valid.                                                                          |
 | 400    | `router_undecided`                                       | A header step got no value it knows. The message lists the values.                                 |
 | 401    | `missing_api_key`, `invalid_api_key`                     | No key, or a key the gateway does not know.                                                        |
-| 401    | `expired_api_key`                                        | The key has expired. Rotate it.                                                                    |
+| 401    | `expired_api_key`                                        | The key has expired. An administrator can rotate it.                                               |
 | 401    | `revoked_api_key`                                        | The key was revoked. Get a new one.                                                                |
 | 402    | `budget_exceeded`                                        | A budget is used up. The message says when it resets.                                              |
 | 402    | `credit_exhausted`                                       | The prepaid credit is used up. See [Billing](../manage/billing.md).                                |

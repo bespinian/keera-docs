@@ -38,8 +38,10 @@ On the **API keys** screen, or with `keera key rotate` and `keera key revoke`.
 My access also has **Revoke**.
 
 - **Rotate** replaces a key with a new one in the same project, with the same
-  guardrails and the same lifetime, counted from now. The old key stops
-  working at once. Do this when a key may have leaked. An
+  guardrails and what it spent. The old key stops working at once. Do this
+  when a key may have leaked. Your new key ends when the old one would have,
+  so an expired key needs an administrator. An administrator's new key gets
+  the old one's lifetime again, counted from now. An
   [agent's key](agents.md#stop-an-agent) cannot be rotated.
 - **Revoke** stops a key for good.
 
@@ -59,5 +61,5 @@ the most common ones:
 | `rate_limit_exceeded`             | Wait a moment. The tool usually retries.                                          |
 | `filter_refused`                  | Remove what the filter names, such as a password, and try again.                  |
 | `model_not_found`                 | Check the name against the models on My access.                                   |
-| `expired_api_key`                 | [Rotate](#rotate-or-revoke-a-key) the key.                                        |
+| `expired_api_key`                 | Ask an administrator for a new key.                                               |
 | `revoked_api_key`                 | Ask for a new key, or [activate](#activate-a-key) the one waiting for you.        |
