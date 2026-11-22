@@ -54,9 +54,8 @@ does not work, start with [Troubleshooting](troubleshooting.md).
 
 ## The operator
 
-Operators work in every organisation. The role comes only from the gateway's
-settings, never from the panel; see [Roles](sign-on.md#roles). Before single
-sign-on is set up, the operator key is the way in.
+Operators work in every organisation; [Roles](sign-on.md#roles) says who is
+one. Before single sign-on is set up, the operator key is the way in.
 
 The panel's **Organisations** screen is for operators. It lists every
 organisation, and creates, edits and deletes them. It also lifts the limit of

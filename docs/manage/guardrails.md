@@ -102,8 +102,3 @@ Developers see the same on [My access](../use/my-access.md).
 - **Rate limits per minute** refill continuously. Per day or month, they reset
   like budgets. A request over the limit is refused with `429` and a
   `Retry-After` header.
-
-!!! tip "Budget for hosted models"
-
-    A hosted model without a guardrail is open to every key in the
-    organisation. Give the projects that may use it a monthly budget.

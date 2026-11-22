@@ -2,18 +2,7 @@
 
 `keera` does everything the panel does, from a terminal. It works with Keera
 Gateway, and with the agents and workspaces of Keera Agents.
-
-## Install
-
-Download `keera` for Linux, macOS or Windows from the
-[releases page](https://github.com/bespinian/keera-gateway/releases), unpack
-it and put it on your `PATH`. Then sign in:
-
-```sh
-keera login
-```
-
-See [Sign in](../../use/sign-in.md#in-the-terminal).
+[Sign in](../../use/sign-in.md#in-the-terminal) says how to install it.
 
 ## Commands
 

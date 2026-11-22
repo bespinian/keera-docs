@@ -91,14 +91,9 @@ gateway, each task is one [session](../monitor/requests-and-sessions.md#sessions
 
 ## Connect it to a service
 
-On an agent's **Connectors** tab, its owner or an administrator clicks **Add
-connector**. They pick one of the organisation's connectors, what it may reach
-there, such as a Slack channel, a Drive folder or a repository, and what it
-may do. See [Connectors](../manage/connectors.md#connect-an-agent).
-
-An administrator adds the connectors first. Where a connector lets each person
-sign in with their own account, click **Connect your account** on it. The
-agent then acts as you on the tasks it does for you.
+Its owner or an administrator connects it to chats, folders, repositories and
+other services on its **Connectors** tab. See
+[Connectors](../manage/connectors.md#connect-an-agent).
 
 ## Stop an agent
 

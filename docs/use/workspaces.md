@@ -53,9 +53,9 @@ Your home folder is in the workspace's disk, so tools you install with
 ## Connect it to a service
 
 On the workspace's **Connectors** tab, add a folder, repository or service, as
-for an [agent](agents.md#connect-it-to-a-service). Its tools act for you. Git
-pushes through a connector only to branches that start with `keera/`. To push
-in your own name, add your own credentials in the workspace.
+for an [agent](../manage/connectors.md#connect-an-agent). Its tools act for
+you. Git pushes through a connector only to branches that start with `keera/`.
+To push in your own name, add your own credentials in the workspace.
 
 ## Sleep, stop and delete
 

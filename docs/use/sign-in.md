@@ -29,8 +29,8 @@ the top right lets you switch, or accept the invitation.
 ## In the terminal
 
 Download `keera` for Linux, macOS or Windows from the
-[releases page](https://github.com/bespinian/keera-gateway/releases) and put
-it on your `PATH`. It signs you in through the browser:
+[releases page](https://github.com/bespinian/keera-gateway/releases), unpack
+it and put it on your `PATH`. It signs you in through the browser:
 
 ```sh
 keera login

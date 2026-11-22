@@ -1,7 +1,9 @@
 # Keera documentation
 
 User documentation for [Keera Gateway](https://github.com/bespinian/keera-gateway),
-Keera Chat and Keera Agents, built with [Zensical](https://zensical.org).
+[Keera Chat](https://github.com/bespinian/keera-chat) and
+[Keera Agents](https://github.com/bespinian/keera-agents), built with
+[Zensical](https://zensical.org).
 
 ```sh
 pip install -r requirements.txt

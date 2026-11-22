@@ -170,4 +170,3 @@ Read the release notes first. Releases that need more than a restart:
 | v0.13.0 | Sandboxes are gone; [Keera Agents](agents.md) replaces them. Remove leftover sandbox pods or containers yourself. `KEERA_SANDBOX_*` and `keera sandbox` are gone.                            |
 | v0.11.0 | Routers are replaced: write them again. `keera guardrail set` takes `--requests` and `--tokens` with `--per`, instead of `--rpm` and `--tpm`. The output-token guardrail is gone.            |
 | v0.10.0 | `max_context` is now `max_context_tokens`, in model files, the API and the CLI. Upgrade to v0.10.0 before you shorten `KEERA_USAGE_RETENTION`.                                               |
-| v0.4.0  | A database created before v0.4.0 cannot be upgraded. Start from an empty one.                                                                                                                |

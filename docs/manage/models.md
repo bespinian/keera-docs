@@ -42,11 +42,12 @@ keera model add keera-frontier --provider anthropic --backend-model claude-opus-
 
 !!! warning "Prompts to a hosted model leave the gateway's private network"
 
-    Before you offer one, decide who may use it, and set a budget and a
-    [filter](filters.md). Swiss providers keep prompts in Switzerland, and
-    Mistral in the EU. PeakPrivacy runs each model in Switzerland or the EU;
-    the catalogue shows which. Anthropic, OpenAI and Google send prompts to
-    the USA, and DeepSeek to China.
+    Every key may call a new model, unless a [guardrail](guardrails.md)
+    limits its models. So before you add one, decide who may use it, and set
+    a budget and a [filter](filters.md). Swiss providers keep prompts in
+    Switzerland, and Mistral in the EU. PeakPrivacy runs each model in
+    Switzerland or the EU; the catalogue shows which. Anthropic, OpenAI and
+    Google send prompts to the USA, and DeepSeek to China.
 
 ## Add your own model
 

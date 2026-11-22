@@ -133,10 +133,8 @@ refuses to start with a missing or wrong setting, and names it.
 
 ### On Kubernetes
 
-Keera Agents must run inside the cluster. Give the agents a namespace of their
-own (`KEERA_AGENTS_NAMESPACE`), with a NetworkPolicy that denies everything by
-default. Keera Agents needs a Role there. The
-[Helm chart](kubernetes.md#where-agents-run) sets all of this up.
+Keera Agents must run inside the cluster. The agents run in a namespace of
+their own; see [Where agents run](kubernetes.md#where-agents-run).
 
 | Variable                          | Default         | What it is                                                          |
 | --------------------------------- | --------------- | ------------------------------------------------------------------- |
