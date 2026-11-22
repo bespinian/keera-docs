@@ -6,13 +6,17 @@ Keera Chat and Keera Agents, built with [Zensical](https://zensical.org).
 ```sh
 pip install -r requirements.txt
 python scripts/api_reference.py   # write the API reference
+python scripts/cli_reference.py   # write the CLI reference
 zensical serve                    # preview at http://localhost:8000
 zensical build                    # write the site to site/
 ```
 
 The pages are in `docs/`, the navigation in `zensical.toml`.
 `scripts/api_reference.py` writes `docs/reference/api/` from the gateway's
-OpenAPI spec, so those pages are not in Git.
+OpenAPI spec, and `scripts/cli_reference.py` writes
+`docs/reference/cli/commands.md` from the latest `keera` release, so those
+pages are not in Git. Pass a path to `cli_reference.py` to use another
+`keera`.
 `.github/workflows/docs.yml` builds the site in strict mode on every pull
 request and publishes it to <https://docs.keera.ch> on every push to `main`
 and once a day.

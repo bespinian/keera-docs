@@ -35,6 +35,7 @@ nav = [
     "manage/filters.md",
     "manage/routers.md",
     "manage/mcp.md",
+    "manage/connectors.md",
     "manage/billing.md",
   ] },
   { "Monitor" = [
@@ -46,6 +47,7 @@ nav = [
   { "Self-host" = [
     "operate/index.md",
     "operate/install.md",
+    "operate/kubernetes.md",
     "operate/sign-on.md",
     "operate/chat.md",
     "operate/agents.md",
@@ -58,7 +60,10 @@ nav = [
       "reference/api/index.md",
       "reference/api/schemas.md",
     ] },
-    "reference/cli.md",
+    { "CLI" = [
+      "reference/cli/index.md",
+      "reference/cli/commands.md",
+    ] },
     "reference/errors.md",
   ] },
 ]
@@ -174,6 +179,7 @@ full_output = "llms-full.txt"
   "manage/filters.md",
   "manage/routers.md",
   "manage/mcp.md",
+  "manage/connectors.md",
   "manage/billing.md",
 ]
 "Monitor" = [
@@ -183,12 +189,14 @@ full_output = "llms-full.txt"
   "monitor/requests-and-sessions.md",
 ]
 "Reference" = [
-  "reference/cli.md",
+  "reference/cli/index.md",
+  "reference/cli/commands.md",
   "reference/errors.md",
 ]
 "Optional" = [
   "operate/index.md",
   "operate/install.md",
+  "operate/kubernetes.md",
   "operate/sign-on.md",
   "operate/chat.md",
   "operate/agents.md",

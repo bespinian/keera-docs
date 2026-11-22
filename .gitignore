@@ -2,3 +2,4 @@ site/
 .cache/
 __pycache__/
 docs/reference/api/
+docs/reference/cli/commands.md

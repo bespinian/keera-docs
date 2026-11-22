@@ -5,7 +5,8 @@ on:
       - main
   pull_request:
   workflow_dispatch:
-  # The API reference comes from the live gateway, so rebuild it daily.
+  # The API and CLI references come from the live gateway and the latest
+  # release, so rebuild them daily.
   schedule:
     - cron: "0 4 * * *"
 permissions:
@@ -29,6 +30,7 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python scripts/api_reference.py
+      - run: python scripts/cli_reference.py
       - run: zensical build --clean --strict
       - uses: actions/upload-pages-artifact@v5
         if: github.event_name != 'pull_request'
