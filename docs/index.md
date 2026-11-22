@@ -70,7 +70,7 @@ gateway's private network.
 
     ---
 
-    Install the gateway on your own hardware and set up single sign-on.
+    Run Keera on your own hardware, with compose or Helm.
 
     [:lucide-arrow-right: Self-host](operate/index.md)
 

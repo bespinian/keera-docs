@@ -21,6 +21,8 @@ Then, if you need them:
 
 - [Routers](routers.md) pick a model for each request.
 - [MCP servers](mcp.md) put tool calls under the same controls.
+- [Connectors](connectors.md) let [agents](../use/agents.md) reach your chats,
+  files, code and services.
 
 !!! info "Routers, filters and MCP are folded away"
 

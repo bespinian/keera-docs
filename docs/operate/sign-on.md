@@ -107,6 +107,11 @@ https://keera.example.ch/control/auth/callback
 The gateway checks each provider when it starts, and refuses to start with a
 message if something is wrong.
 
+With the [Helm chart](kubernetes.md#keera-gateway), set the same under
+`oidc`: one provider in `oidc.issuer`, `oidc.clientId` and
+`oidc.clientSecret`, or several in `oidc.providers`. Do not rename a provider
+later: its name is part of everyone's sign-in.
+
 ## Roles
 
 **Operators** come only from the settings: an address in `KEERA_OPERATORS`, or

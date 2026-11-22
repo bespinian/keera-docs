@@ -1,23 +1,58 @@
 # Self-host
 
-This part is for **operators**: whoever runs a Keera Gateway of their own. To
+This part is for **operators**: whoever runs Keera on their own hardware. To
 use the public instance at <https://gateway.keera.ch>, you can skip it.
 
-The gateway is one static program, and Postgres is all it needs. Optional:
-Redis to share rate limits between replicas, and an identity provider for
-single sign-on.
+## What runs
 
-1. [Install](install.md) the gateway, put TLS in front, and create the first
-   organisation. To try it on your laptop, start with
-   [compose](install.md#one-host-with-compose).
+```mermaid
+flowchart LR
+  people["People and tools"] --> gw["Keera Gateway"]
+  people --> chat["Keera Chat"]
+  people --> agents["Keera Agents"]
+  chat --> gw
+  agents --> gw
+  agents --> machines["Agents' and<br>workspaces' machines"]
+  machines --> gw
+  gw --> models["Models"]
+  gw --- db1[("Postgres")]
+  agents --- db2[("Postgres")]
+```
+
+| App                                  | Image                             | Port   | Needs                                 |
+| ------------------------------------ | --------------------------------- | ------ | ------------------------------------- |
+| [Keera Gateway](install.md)          | `ghcr.io/bespinian/keera-gateway` | `8080` | Postgres 14 or later                  |
+| [Keera Chat](chat.md) (optional)     | `ghcr.io/bespinian/keera-chat`    | `8090` | the gateway; it keeps no state        |
+| [Keera Agents](agents.md) (optional) | `ghcr.io/bespinian/keera-agents`  | `8070` | the gateway, Postgres, and Kubernetes |
+
+Each app is one static program in a `FROM scratch` image, for `linux/amd64`.
+Each reads its settings from environment variables, and creates and updates
+its database tables itself.
+
+## Choose how to run it
+
+|               | [Compose](install.md#one-host-with-compose) | [Kubernetes with Helm](kubernetes.md) |
+| ------------- | ------------------------------------------- | ------------------------------------- |
+| For           | a laptop, a demo, one host                  | a team, production                    |
+| Keera Gateway | with Postgres and a model                   | chart `keera-gateway`                 |
+| Keera Chat    | one more container                          | a Deployment of your own              |
+| Keera Agents  | for development only                        | chart `keera-agents`                  |
+
+## Set it up
+
+1. [Install the gateway](install.md), put TLS in front, and create the first
+   organisation.
 2. Set up [single sign-on or passkeys](sign-on.md), so people sign in as
    themselves.
 3. To give everyone a chat in the browser, [run Keera Chat](chat.md). For
-   agents, [run Keera Agents](agents.md). To let a Claude plan pay for
-   Claude Code, set up [Claude plans](claude-plans.md).
-4. Look up any setting in [Settings](settings.md).
-5. When something does not work, start with
-   [Troubleshooting](troubleshooting.md).
+   agents and workspaces, [run Keera Agents](agents.md).
+4. To let a Claude plan pay for Claude Code, set up
+   [Claude plans](claude-plans.md).
+
+Every setting of the gateway is in [Settings](settings.md). When something
+does not work, start with [Troubleshooting](troubleshooting.md).
+
+## The operator
 
 Operators work in every organisation. The role comes only from the gateway's
 settings, never from the panel; see [Roles](sign-on.md#roles). Before single

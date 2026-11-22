@@ -48,7 +48,8 @@ Where there are several ways to sign in, add `--provider`, such as
 | `keera org list`          | lists your organisations                   |
 | `keera org switch <name>` | makes commands act on another organisation |
 
-A sign-in lasts 30 days, in the browser and in the terminal.
+A sign-in lasts 30 days, in the browser and in the terminal. Every command is
+in [The keera CLI](../reference/cli/index.md).
 
 !!! note "Working over ssh"
 

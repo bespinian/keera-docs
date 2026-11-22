@@ -28,6 +28,77 @@ Put TLS in front of it, as for the gateway, and turn off response buffering so
 replies stream. Keera Chat must run at the root of its host: its addresses take
 no path. `/healthz` answers health checks.
 
+## Next to compose
+
+Next to the gateway's [compose](install.md#one-host-with-compose), add to its
+`.env`:
+
+```sh
+KEERA_PUBLIC_URL=http://localhost:8080
+KEERA_CHAT_URL=http://localhost:8090
+```
+
+Run `podman compose up -d` again, then start Keera Chat on the same network:
+
+```sh
+podman run -d --name keera-chat --network compose_default \
+  -p 127.0.0.1:8090:8090 \
+  -e KEERA_CHAT_PUBLIC_URL=http://localhost:8090 \
+  -e KEERA_CHAT_GATEWAY_URL=http://localhost:8080 \
+  -e KEERA_CHAT_GATEWAY_INTERNAL_URL=http://keera-gateway:8080 \
+  -e KEERA_CHAT_SECRET_KEY="$(openssl rand -hex 32)" \
+  ghcr.io/bespinian/keera-chat:<version>
+```
+
+Open <http://localhost:8090>. Use `localhost` everywhere, not `127.0.0.1`: the
+browser keeps the sign-in apart by host name.
+
+## On Kubernetes
+
+There is no Helm chart. A Deployment and a Service are enough:
+
+```yaml title="keera-chat.yaml"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keera-chat
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: keera-chat }
+  template:
+    metadata:
+      labels: { app: keera-chat }
+    spec:
+      containers:
+        - name: keera-chat
+          image: ghcr.io/bespinian/keera-chat:<version>
+          ports: [{ containerPort: 8090 }]
+          env:
+            - { name: KEERA_CHAT_PUBLIC_URL, value: https://chat.example.ch }
+            - { name: KEERA_CHAT_GATEWAY_URL, value: https://keera.example.ch }
+            - name: KEERA_CHAT_GATEWAY_INTERNAL_URL
+              value: http://keera-gateway.keera-gateway.svc
+            - name: KEERA_CHAT_SECRET_KEY
+              valueFrom:
+                secretKeyRef: { name: keera-chat, key: secret-key }
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8090 }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keera-chat
+spec:
+  selector: { app: keera-chat }
+  ports: [{ port: 80, targetPort: 8090 }]
+```
+
+Publish the Service at `KEERA_CHAT_PUBLIC_URL` with an Ingress, as for the
+gateway.
+
+## Settings
+
 | Variable                          | Default                   | What it is                                                                                  |
 | --------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------- |
 | `KEERA_CHAT_GATEWAY_URL`          | required                  | The gateway's address, as a browser reaches it.                                             |

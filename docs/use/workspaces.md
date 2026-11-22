@@ -6,26 +6,35 @@ Only you get in.
 
 Its coding agent uses the models your key may use, and every call goes
 through Keera Gateway with a key in your name. So your guardrails, budgets and
-filters apply.
+filters apply. The key never enters the workspace, so it cannot be copied out.
 
 ## Create a workspace
 
 In Keera Agents, open **Workspaces** and click **New workspace**. Choose what
 it opens in:
 
-- **Terminal**: Pi, the coding agent, in a terminal in your browser.
+- **Terminal**: pi, the coding agent, in a terminal in your browser.
 - **VS Code**: VS Code in your browser, with the Cline coding agent.
 
 Then give it a name, the model the coding agent starts with, and its machine.
-You can change the experience later; your files stay.
+Both coding agents come set up with that model. You can change the
+experience later; your files stay.
 
-Or, with the [`keera` CLI](../reference/cli.md):
+![The New workspace form, after choosing VS Code](../assets/images/new-workspace.webp){ .screenshot }
+
+Or, with the [`keera` CLI](../reference/cli/commands.md#keera-workspace):
 
 ```sh
 keera workspace create api --vscode
 ```
 
+An administrator can create a workspace for someone else, such as a new
+colleague. It is theirs from the start.
+
 ## Get in
+
+**Connect** on the workspace's page shows these commands with its name filled
+in:
 
 ```sh
 keera workspace open api           # in your browser, until Ctrl+C
@@ -35,10 +44,11 @@ ssh api.keera                      # ssh, scp, VS Code Remote-SSH, JetBrains
 ```
 
 Each connection goes through Keera Agents with your `keera login`. Nothing
-else reaches the workspace.
+else reaches the workspace. In the terminal experience, `ssh` joins the same
+pi session the browser shows.
 
-In VS Code, set Cline's provider once: **OpenAI Compatible**, base URL
-`http://127.0.0.1:7418/v1`, any API key, and a model from the gateway.
+Your home folder is in the workspace's disk, so tools you install with
+`npm install -g` or `pip` stay. VS Code opens `~/Projects`.
 
 ## Connect it to a service
 
@@ -56,7 +66,7 @@ in your own name, add your own credentials in the workspace.
   it, and revokes its key.
 
 Its disk [costs](../manage/billing.md#agents-and-workspaces) while it exists,
-stopped too.
+stopped too. `keera workspace cost api` shows what it cost this month.
 
 Administrators see, stop and delete every workspace in the organisation, but
 cannot get in. Other members do not see it.

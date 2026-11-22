@@ -28,7 +28,8 @@ prices. Narrow it by location first: that is where prompts go.
 2. Enter the alias.
 3. Click **Add model**.
 
-The catalogue also has embedding and rerank models; filter by **Kinds**.
+The catalogue also has embedding, rerank and transcription models; filter by
+**Kinds**.
 
 The model uses the gateway's key; see [Billing](billing.md).
 
@@ -74,13 +75,14 @@ keera model add my-coder --backend https://llm.example.ch/v1 \
 
 ## Model kinds
 
-| Kind           | What it does                                                                                                                                                |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Chat**       | Answers messages. The default.                                                                                                                              |
-| **Completion** | Continues a text, for code completion.                                                                                                                      |
-| **Embedding**  | Turns text into vectors, for search.                                                                                                                        |
-| **Rerank**     | Ranks documents against a query.                                                                                                                            |
-| **Decision**   | Decides, but writes no text, such as Keera Decider. Only [gate filters](filters.md) and instruction [route steps](routers.md) use it. Tools cannot call it. |
+| Kind              | What it does                                                                                                                                                |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Chat**          | Answers messages. The default.                                                                                                                              |
+| **Completion**    | Continues a text, for code completion.                                                                                                                      |
+| **Embedding**     | Turns text into vectors, for search.                                                                                                                        |
+| **Rerank**        | Ranks documents against a query.                                                                                                                            |
+| **Transcription** | Turns audio into text. A hosted one may be priced per minute of audio.                                                                                      |
+| **Decision**      | Decides, but writes no text, such as Keera Decider. Only [gate filters](filters.md) and instruction [route steps](routers.md) use it. Tools cannot call it. |
 
 [The API](../use/api.md) says which endpoint takes which kind.
 

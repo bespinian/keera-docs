@@ -11,6 +11,7 @@ the same request log.
 | OpenAI Embeddings       | `POST /api/v1/embeddings`            | search and retrieval           |
 | Rerank                  | `POST /api/v1/rerank`                | search and retrieval           |
 | Cohere Rerank           | `POST /api/v2/rerank`                | the Cohere SDK                 |
+| Transcription           | `POST /api/v1/audio/transcriptions`  | speech to text                 |
 | Anthropic Messages      | `POST /api/v1/messages`              | Claude Code, the Anthropic SDK |
 | Anthropic token count   | `POST /api/v1/messages/count_tokens` | Claude Code                    |
 | OpenAI Responses        | `POST /api/v1/responses`             | Codex                          |
@@ -21,11 +22,27 @@ the same request log.
 Put the name of a model or router in the `model` field. A chat model works
 with Chat Completions, Messages and Responses: the gateway translates between
 them. A completion model only works with Completions, an embedding model only
-with Embeddings, and a rerank model only with Rerank. A
+with Embeddings, a rerank model only with Rerank, and a transcription model
+only with Transcription. A
 [decision model](../manage/models.md#model-kinds) cannot be called at all.
+
+A transcription request is a form with the audio in `file`, as with OpenAI.
+Filters read its `prompt`. It cannot stream.
+
+```sh
+curl https://gateway.keera.ch/api/v1/audio/transcriptions \
+  -H "Authorization: Bearer $KEERA_API_KEY" \
+  -F model=keera-whisper -F file=@meeting.mp3
+```
 
 Every endpoint and field is in the [API reference](../reference/api/index.md),
 and every error code in [Errors](../reference/errors.md).
+
+The panel and `keera` use a second API, the **control API**, under
+`/control`. It is in the API reference too. To automate administration, the
+simplest way is `keera` with `--json`; see the [CLI](../reference/cli/index.md).
+Keera Agents has no stable API yet: use `keera agent`, `keera task`,
+`keera schedule` and `keera workspace`.
 
 !!! note "Nothing is stored"
 

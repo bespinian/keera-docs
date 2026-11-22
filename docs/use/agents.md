@@ -19,36 +19,51 @@ For a machine of your own with a coding agent, see
 
 Open **Agents** and click **New agent**:
 
-| Field                     | What it means                                                                                                                   |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| **Name**                  | Unique in the organisation. People use it to address the agent in a shared chat.                                                |
-| **Instructions**          | What the agent does and how. It reads them before every task.                                                                   |
-| **Model**                 | The model or [router](../manage/routers.md) it thinks with.                                                                     |
-| **Project**               | The gateway project whose guardrails and budget it uses. Only administrators choose it; otherwise it is the first project.      |
-| **Tools**                 | **Memory**, **Files**, **Shell** and **Web**. The [MCP servers](../manage/mcp.md) its key may call come on top.                 |
-| **Who may give it work**  | **Only its owner** (the default), **Everyone in the organisation**, or **Only the people listed**.                              |
-| **Monthly budget in CHF** | The most its model calls may cost per month. Once spent, the gateway refuses its calls, so its tasks fail until the next month. |
+![The New agent form, with the project, owner and model it uses](../assets/images/new-agent.webp){ .screenshot }
 
-**Machine** sets how isolated it runs (**Standard**, **Isolated** or **VM**),
-and its CPU, memory and disk. Its size sets
-[what it costs](../manage/billing.md#agents-and-workspaces). Without credit,
-it does not start, and its waiting tasks fail with the reason.
+| Field            | What it means                                                                                                                       |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Name**         | Unique in the organisation. People use it to address the agent in a shared chat.                                                    |
+| **Project**      | The gateway project whose models and budget it uses. Only administrators choose it; otherwise it is the first project.              |
+| **Owner**        | Whom it works for and spends as. Only administrators choose it, such as a new colleague; otherwise it is you.                       |
+| **Model**        | The model or [router](../manage/routers.md) it thinks with. Pick one that makes tool calls.                                         |
+| **Instructions** | What the agent does and how. It reads them before every task.                                                                       |
+| **Tools**        | **Memory**, **Files**, **Shell** and **Web**. The [MCP servers](../manage/mcp.md) its key may call come on top.                     |
+| **Machine**      | How isolated it runs (**Standard**, **Isolated** or **VM**), and its CPU, memory and disk. The disk is fixed once the agent exists. |
 
-You are its owner. What it spends counts as yours. Everyone in the
-organisation sees every agent, but only its owner or an administrator can
-change, stop or delete it.
+Under **Advanced**:
+
+| Field                     | What it means                                                                                         |
+| ------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Who may give it work**  | **Only its owner** (the default), **Everyone in the organisation**, or **Only the people listed**.    |
+| **Monthly budget in CHF** | The most its model calls may cost per month. Once spent, it takes no more tasks until the next month. |
+| **Max steps per task**    | Each reply and tool call is a step. A task that reaches this stops. Empty means no limit.             |
+
+Its machine's size sets [what it costs](../manage/billing.md#agents-and-workspaces).
+Without credit, it does not start, and its waiting tasks fail with the reason.
+
+What it spends counts as its owner's. Everyone in the organisation sees every
+agent, but only its owner or an administrator can change, stop or delete it.
+
+Or, with the [`keera` CLI](../reference/cli/commands.md#keera-agent):
+
+```sh
+keera agent create scout --model keera-speed --instructions @scout.md
+```
 
 ## Give it work
 
 | Where            | How                                                                                                                                                               |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **A chat**       | Write to it in Microsoft Teams, Google Chat or Slack. In a channel, mention the bot. It answers in the thread.                                                    |
-| **Keera Chat**   | Pick the agent in the model menu of a new chat, or click **Chat** on the agent's page. See [Keera Chat](chat.md).                                                 |
+| **Keera Chat**   | Pick the agent in the model menu of a new chat, or click **Chat** on the agent's page. See [Keera Chat](chat.md#chat-with-an-agent).                              |
 | **The panel**    | Click **Give a task** on the agent's page.                                                                                                                        |
 | **The board**    | Assign a card to it in **To do**. It moves the card to **In progress**, then comments with the result and moves it to **Review**, or to **Backlog** if it failed. |
 | **A schedule**   | Under **Schedules**, give it the same task at set times, such as every weekday at 08:00, or by a cron expression. The result can go to a chat.                    |
 | **A folder**     | A new or changed file in a watched Google Drive or OneDrive folder starts a task.                                                                                 |
-| **The terminal** | `keera agent ask scout "…" --wait`, with the [keera CLI](../reference/cli.md).                                                                                    |
+| **The terminal** | `keera agent ask scout "…" --wait`                                                                                                                                |
+
+![The board, with cards that agents worked on in Review and Done](../assets/images/board.webp){ .screenshot }
 
 When several agents share one bot, start the message with the agent's name,
 such as `Scout: …` or `@Scout`. If the answer takes more than 10 seconds, the
@@ -60,7 +75,8 @@ pull or merge request for a person to review. It cannot push to any other
 branch.
 
 Besides its tools, an agent can post updates to its chats, create and move
-cards on the board, and comment on issues and pull or merge requests.
+cards on the board, and comment on issues and pull or merge requests. It
+keeps notes in its memory, `MEMORY.md`, which it reads before every task.
 
 An agent does one task at a time. Others wait in line. A task stops after 30
 minutes. After 15 minutes without work, the agent sleeps, so the next task
@@ -68,28 +84,21 @@ takes a little longer to start.
 
 The **Tasks** tab shows what it did for each task: its messages, the tools it
 used and their results. You see the tasks you asked for and the tasks of your
-own agents. Administrators see all. Tasks are deleted after 90 days.
+own agents. Administrators see all. Tasks are deleted after 90 days. On the
+gateway, each task is one [session](../monitor/requests-and-sessions.md#sessions).
+
+![A task: the prompt, the result, and the steps, such as a query to a database](../assets/images/agent-task.webp){ .screenshot }
 
 ## Connect it to a service
 
-An administrator adds a **connector** for each service, under **Connectors**,
-such as the organisation's Slack app, GitHub token or Jira account. Then, on an
-agent's **Connectors** tab, its owner or an administrator clicks **Add
-connector**, picks the connector, what it may reach there, and a mode:
+On an agent's **Connectors** tab, its owner or an administrator clicks **Add
+connector**. They pick one of the organisation's connectors, what it may reach
+there, such as a Slack channel, a Drive folder or a repository, and what it
+may do. See [Connectors](../manage/connectors.md#connect-an-agent).
 
-- **Chat**: it answers messages in a chat.
-- **Watch**: each new file in a folder is a task.
-- **Files**: it may read and write files in a folder.
-- **Repository**: it may clone a repository, push `keera/` branches and open
-  pull requests.
-- **Read**, or **Read and write**: it may look things up in a service, such as
-  a Jira project or an AWS region, and with write, make changes.
-
-The service's credentials stay in Keera Agents. They never reach the agent's
-machine. A connector's page shows which agents use it.
-
-A member may connect their own agent to any folder a shared connector reaches.
-So give a shared file connector only folders everyone may read.
+An administrator adds the connectors first. Where a connector lets each person
+sign in with their own account, click **Connect your account** on it. The
+agent then acts as you on the tasks it does for you.
 
 ## Stop an agent
 
@@ -97,6 +106,9 @@ So give a shared file connector only folders everyone may read.
   files and memory are kept. **Start** runs it again.
 - **Delete agent**, at the bottom of **Settings**, removes its machine, files,
   memory, connectors and schedules, and revokes its key. Its tasks stay.
+
+`keera agent logs <agent>` shows what its machine printed, such as why it
+does not start.
 
 Its key shows as **Agent <name>**, marked **Keera Agent**, on the gateway's
 **API keys** screen. It cannot be rotated. Revoking it makes the agent's model
