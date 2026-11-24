@@ -60,7 +60,10 @@ agent's page in Keera Agents opens such a chat too.
 
 - A chat stays with the agent it started with. You cannot edit a message or
   ask for another answer.
-- An agent may take minutes to answer, and reads text only.
+- An agent may take minutes to answer.
+- Attach images, PDFs and files as for a model. Whether a PDF goes as page
+  images or as text depends on the agent's model. The agent remembers them for
+  the rest of the chat.
 - **Stop** also cancels the agent's task.
 - **Show the steps** shows what the agent did, and **Open in Keera Agents**
   opens the task.
