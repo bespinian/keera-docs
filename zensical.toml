@@ -3,7 +3,7 @@ site_name = "Keera"
 site_description = "User documentation for Keera Gateway, Keera Chat and Keera Agents."
 site_author = "bespinian GmbH"
 site_url = "https://docs.keera.ch/"
-copyright = "Copyright &copy; 2026 bespinian GmbH"
+copyright = "Copyright &copy; bespinian GmbH"
 
 repo_url = "https://github.com/bespinian/keera-gateway"
 repo_name = "bespinian/keera-gateway"

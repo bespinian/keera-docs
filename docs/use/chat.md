@@ -30,15 +30,19 @@ have no usable key, Keera Chat tells you whom to ask.
   you sent.
 - Attach images (PNG, JPEG, GIF or WebP), PDFs and text files with **+**, or
   paste or drop them. Every model reads text files, up to ten of 512 KB each.
-  Images and PDFs need a model that reads images. Each PDF page is sent as an
-  image, and a message holds up to ten images in all.
+  Images need a model with [Vision](../manage/models.md#capabilities), up to
+  ten a message.
+- A PDF goes to a model with Vision as images of its pages, which count toward
+  the ten. Any other model gets its text, so a scanned PDF needs Vision. If
+  you switch to a model without Vision, earlier images are left out.
 - Open a model's reasoning with **Show the thought process**, if it shares it.
 - See how full the conversation is in the ring next to the send button. When
   it is full, start a new chat or pick a model that reads more.
 - Set **Custom instructions** in the account menu. They are sent with every
   chat.
 - Find old conversations by title with **Search chats** in the sidebar.
-  **Rename** or **Delete** one from its **More** menu.
+  **Pin**, **Rename**, **Export** or **Delete** one from its **More** menu.
+  Pinned chats stay at the top.
 - Start a new chat with Ctrl+Shift+O, or Cmd+Shift+O on a Mac.
 - Switch organisations in the account menu. Each has its own chats.
 - Open the gateway's [My access](my-access.md) with **Keera Gateway**, and
@@ -77,9 +81,10 @@ chats with you, as [tasks](agents.md#give-it-work). This means:
 - **They do not move to another device or browser.** Use **Export chats** and
   **Import chats** in the account menu to take them along. The export file
   holds your chats, their attachments and your custom instructions, and is not
-  encrypted. Importing keeps the chats already there, and replaces one only
-  with a newer copy of it. It takes the file's custom instructions only if you
-  have none yet.
+  encrypted. To share one chat, use **Export** in its **More** menu; that file
+  holds no custom instructions. Importing keeps the chats already there, and
+  replaces one only with a newer copy of it. It takes the file's custom
+  instructions only if you have none yet.
 - **Clearing the site's data deletes them.** A private window forgets them
   when it closes.
 - **Signing out keeps them.** On a shared computer, use **Delete all chats**

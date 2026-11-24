@@ -14,7 +14,8 @@ counts against that key's budget and rate limits, passes its filters and shows
 up in its usage. Nothing gets around the guardrails here.
 
 **Parameters** sets a system prompt, the temperature and the maximum length of
-the answer. You can attach an image to a message, if the model reads images.
+the answer. You can attach an image to a message, if the model has
+[Vision](../manage/models.md#capabilities).
 **Clear** starts a new conversation.
 
 For everyday chats you can come back to, use [Keera Chat](chat.md).

@@ -38,7 +38,8 @@ the fee under **Advanced options**.
 machines in Keera Agents. They are on the same bill and take from the same
 credit as models:
 
-- **CPU and memory** count while a machine runs.
+- **CPU and memory** count while a machine runs, at least a minute for each
+  run.
 - **Disk** counts while it exists, stopped too, until it is deleted.
 
 Each counts by the size set for the machine, not by what it uses. **Billing**
@@ -74,13 +75,13 @@ keera billing auto-topup --below 50 --amount 200
 
 When the credit falls below CHF 50, the card is charged CHF 200.
 
-| Command                          | What it does                            |
-| -------------------------------- | --------------------------------------- |
-| `keera billing credit`           | balance, saved card and latest payments |
-| `keera billing payments`         | the latest payments                     |
-| `keera billing receipt <id>`     | downloads a payment's receipt as a PDF  |
-| `keera billing auto-topup --off` | turns automatic top-up off              |
-| `keera billing forget-card`      | removes the saved card                  |
+| Command                          | What it does                             |
+| -------------------------------- | ---------------------------------------- |
+| `keera billing credit`           | balance, saved card and latest payments  |
+| `keera billing payments`         | payments; `--before <id>` for older ones |
+| `keera billing receipt <id>`     | downloads a payment's receipt as a PDF   |
+| `keera billing auto-topup --off` | turns automatic top-up off               |
+| `keera billing forget-card`      | removes the saved card                   |
 
 ## Recurring charges
 

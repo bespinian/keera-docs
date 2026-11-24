@@ -17,7 +17,8 @@ it opens in:
 - **VS Code**: VS Code in your browser, with the Cline coding agent.
 
 Then give it a name, the model the coding agent starts with, and its machine.
-Both coding agents come set up with that model. You can change the
+Only models with [Tool calling](../manage/models.md#capabilities) work. Both
+coding agents come set up with that model. You can change the
 experience later; your files stay.
 
 ![The New workspace form, after choosing VS Code](../assets/images/new-workspace.webp){ .screenshot }

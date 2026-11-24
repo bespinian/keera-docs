@@ -87,6 +87,23 @@ keera model add my-coder --backend https://llm.example.ch/v1 \
 
 [The API](../use/api.md) says which endpoint takes which kind.
 
+## Capabilities
+
+A chat model can say what it does beyond text:
+
+- **Tool calling:** the model calls tools. Coding agents need it.
+- **Vision:** the model reads images. A [gate](filters.md#what-a-gate-reads)
+  on it judges a request's images too. Set it only if the backend takes
+  images: otherwise the gate fails and stops every request with an image.
+
+Models from the catalogue come with them set. For your own model, set them
+under **Advanced options**, or with `--capabilities`.
+[Check the model](#check-a-model) afterwards.
+
+```sh
+keera model set keera-code --capabilities tools,vision
+```
+
 ## Write a good description
 
 The description tells people what the model is for. [Routers](routers.md) also
@@ -110,6 +127,10 @@ The check gives the model a tool and a question only the tool can answer. It
 reports whether the model made a proper tool call, whether streaming works,
 and whether the server answered as the right model. Coding agents need tool
 calls to edit files, so run the check after every change to a model.
+
+If the model has [Vision](#capabilities), the check also shows it a red square
+and asks its colour. It warns when a capability does not match what the
+model does.
 
 ## Stop using a model
 

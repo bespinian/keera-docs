@@ -30,12 +30,14 @@ a typo fails at once.
 | Trello                         | cards                       | a Power-Up's API key and a token      |
 | Google Docs, Sheets, Slides    | documents                   | a service account                     |
 | Google Calendar, Gmail         | events, mail                | a service account                     |
+| Google Meet                    | meetings, transcripts       | a service account with delegation     |
 | Outlook Mail, Outlook Calendar | mail, events                | an Entra app                          |
 | HubSpot, Salesforce            | CRM records                 | an app's token or client credentials  |
 | Freshdesk                      | tickets                     | an agent's API key                    |
 | PostgreSQL                     | SQL queries                 | a database role                       |
 | Kubernetes                     | workloads, logs, events     | a service account token               |
 | AWS, Azure, Google Cloud       | resources, logs, costs      | an access key, app or service account |
+| Brave Search                   | web and news search         | an API key                            |
 
 Give a connector's credentials no more than agents should have. The service
 enforces them.
@@ -50,6 +52,10 @@ In a channel, an agent only sees messages that mention the bot. Keera Agents
 knows who wrote by their email address, so the bot must be allowed to read
 it. Someone from outside your organisation is refused.
 
+On Slack, an agent bound to every channel (`*`) answers wherever it is asked,
+but cannot post on its own, such as a schedule's result. Bind it to a channel
+or to your direct messages with the bot instead: **Browse** lists both.
+
 ### Code
 
 Create a user of its own for your agents on GitHub or GitLab, and protect
@@ -61,7 +67,8 @@ that start with `keera/`, whatever the token allows.
 Usually, every agent connected to a connector acts as its one account. Most
 services can instead let **each person sign in with their own account**. An
 agent then works there as the person it works for, and reaches only what they
-may. Chats, HubSpot, PostgreSQL, Trello and Freshdesk cannot do this.
+may. Chats, HubSpot, PostgreSQL, Trello, Freshdesk and Brave Search cannot do
+this.
 
 Choose it when you add the connector, and enter an OAuth client of that
 service instead of an account. Then each person clicks **Connect your

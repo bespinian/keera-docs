@@ -30,7 +30,7 @@ gateway's private network.
 - **A chat for everyone.** [Keera Chat](use/chat.md) at chat.keera.ch, under
   the same guardrails.
 - **Agents.** [Keera Agents](use/agents.md) runs assistants that people give
-  work in a chat, on a board or on a schedule, and
+  work in a chat, on a squad's board or on a schedule, and
   [workspaces](use/workspaces.md) with a coding agent, under the same
   guardrails.
 - **A full record.** Every request is logged with its cost and outcome. No

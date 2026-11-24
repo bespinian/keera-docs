@@ -94,6 +94,10 @@ provider's key.
 With several replicas, set up Redis for rate limits; see
 [Traffic](settings.md#traffic).
 
+Charts after 0.1.3 name the chart's database `keera_gateway`, where it was
+`keera`. Postgres creates it only on first start, so an older install keeps
+its own: set `database.internal.database: keera` before you upgrade.
+
 ## Keera Agents
 
 Install the gateway first.

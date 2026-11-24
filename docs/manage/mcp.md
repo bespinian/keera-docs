@@ -47,7 +47,8 @@ keera guardrail set project "Payments Platform" --tools github/search_code
 
 Each level narrows the one above. If no level sets a list, a key may call
 every tool of every server. A tool the key may not call is hidden from the
-client.
+client. An [agent](../use/agents.md#create-an-agent) can be narrowed further,
+to some of its project's servers.
 
 A tool call counts as one request against the key's rate limits.
 

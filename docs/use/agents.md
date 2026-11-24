@@ -2,7 +2,8 @@
 
 **Keera Agents** runs AI agents for your organisation. An agent is an
 assistant with its own machine, files and memory. People give it work in a
-chat, on a board or on a schedule, and it answers where the work came from.
+chat, on a squad's board or on a schedule, and it answers where the work came
+from.
 
 Every model call an agent makes goes through Keera Gateway, with a key in its
 owner's name. So the owner's guardrails, budgets, filters and audit log apply.
@@ -26,9 +27,11 @@ Open **Agents** and click **New agent**:
 | **Name**         | Unique in the organisation. People use it to address the agent in a shared chat.                                                    |
 | **Project**      | The gateway project whose models and budget it uses. Only administrators choose it; otherwise it is the first project.              |
 | **Owner**        | Whom it works for and spends as. Only administrators choose it, such as a new colleague; otherwise it is you.                       |
-| **Model**        | The model or [router](../manage/routers.md) it thinks with. Pick one that makes tool calls.                                         |
+| **Model**        | The model or [router](../manage/routers.md) it thinks with. Only models with [Tool calling](../manage/models.md#capabilities) work. |
 | **Instructions** | What the agent does and how. It reads them before every task.                                                                       |
-| **Tools**        | **Memory**, **Files**, **Shell** and **Web**. The [MCP servers](../manage/mcp.md) its key may call come on top.                     |
+| **Tools**        | **Memory**, **Files**, **Shell** and **Web**.                                                                                       |
+| **MCP servers**  | The [MCP servers](../manage/mcp.md) it may call: all its project allows, or only those you tick. The gateway enforces it.           |
+| **Other models** | Models it may use as tools; see [Other models](#other-models).                                                                      |
 | **Machine**      | How isolated it runs (**Standard**, **Isolated** or **VM**), and its CPU, memory and disk. The disk is fixed once the agent exists. |
 
 Under **Advanced**:
@@ -53,17 +56,15 @@ keera agent create scout --model keera-speed --instructions @scout.md
 
 ## Give it work
 
-| Where            | How                                                                                                                                                               |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A chat**       | Write to it in Microsoft Teams, Google Chat or Slack. In a channel, mention the bot. It answers in the thread.                                                    |
-| **Keera Chat**   | Pick the agent in the model menu of a new chat, or click **Chat** on the agent's page. See [Keera Chat](chat.md#chat-with-an-agent).                              |
-| **The panel**    | Click **Give a task** on the agent's page.                                                                                                                        |
-| **The board**    | Assign a card to it in **To do**. It moves the card to **In progress**, then comments with the result and moves it to **Review**, or to **Backlog** if it failed. |
-| **A schedule**   | Under **Schedules**, give it the same task at set times, such as every weekday at 08:00, or by a cron expression. The result can go to a chat.                    |
-| **A folder**     | A new or changed file in a watched Google Drive or OneDrive folder starts a task.                                                                                 |
-| **The terminal** | `keera agent ask scout "…" --wait`                                                                                                                                |
-
-![The board, with cards that agents worked on in Review and Done](../assets/images/board.webp){ .screenshot }
+| Where            | How                                                                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **A chat**       | Write to it in Microsoft Teams, Google Chat or Slack. In a channel, mention the bot. It answers in the thread.                                 |
+| **Keera Chat**   | Pick the agent in the model menu of a new chat, or click **Chat** on the agent's page. See [Keera Chat](chat.md#chat-with-an-agent).           |
+| **The panel**    | Click **Give a task** on the agent's page.                                                                                                     |
+| **A squad**      | Assign a card to it on a [squad's](#squads) board.                                                                                             |
+| **A schedule**   | Under **Schedules**, give it the same task at set times, such as every weekday at 08:00, or by a cron expression. The result can go to a chat. |
+| **A folder**     | A new or changed file in a watched Google Drive or OneDrive folder starts a task.                                                              |
+| **The terminal** | `keera agent ask scout "…" --wait`                                                                                                             |
 
 When several agents share one bot, start the message with the agent's name,
 such as `Scout: …` or `@Scout`. If the answer takes more than 10 seconds, the
@@ -75,8 +76,8 @@ pull or merge request for a person to review. It cannot push to any other
 branch.
 
 Besides its tools, an agent can post updates to its chats, create and move
-cards on the board, and comment on issues and pull or merge requests. It
-keeps notes in its memory, `MEMORY.md`, which it reads before every task.
+cards on its squads' boards, and comment on issues and pull or merge requests.
+It keeps notes in its memory, `MEMORY.md`, which it reads before every task.
 
 An agent does one task at a time. Others wait in line. A task stops after 30
 minutes. After 15 minutes without work, the agent sleeps, so the next task
@@ -88,6 +89,42 @@ own agents. Administrators see all. Tasks are deleted after 90 days. On the
 gateway, each task is one [session](../monitor/requests-and-sessions.md#sessions).
 
 ![A task: the prompt, the result, and the steps, such as a query to a database](../assets/images/agent-task.webp){ .screenshot }
+
+## Squads
+
+A **squad** is a group of agents that share a board. Open **Squads** and
+click **New squad**. Give it:
+
+- **A goal**: what the squad is for. Every member reads it with each card.
+- **Members**: the agents that may take its cards. An agent can be in several
+  squads.
+- **A lead**, if you like: it takes the cards put in **To do** without an
+  agent, and hands out the work.
+
+![A squad's board, with cards that agents worked on in Review and Done](../assets/images/board.webp){ .screenshot }
+
+The board has five columns: **Backlog**, **To do**, **In progress**,
+**Review** and **Done**. A card in **To do** with an agent is picked up within
+seconds. The agent comments with the result and moves the card to **Review**,
+or to **Backlog** if it failed.
+
+Members hand each other parts of the work as cards. A card that handed work
+out waits in **In progress** until those cards are done. Then its agent picks
+it up again, with their results. To keep agents from keeping each other busy,
+a card can be handed on at most three times, and an agent can hand out at
+most 20 cards from one card.
+
+Everyone in the organisation sees and changes squads. Whoever assigns a card
+must be allowed to give its agent work, and the task runs for them.
+
+## Other models
+
+Under **Other models**, an agent can use more models of its project as tools:
+
+- **Transcription**: turns a recording in a connected folder into text, such
+  as for meeting minutes. Up to 25 MiB of audio or video.
+- **Models it may ask**: it sends another model one question and gets one
+  answer. That model sees only the question.
 
 ## Connect it to a service
 
