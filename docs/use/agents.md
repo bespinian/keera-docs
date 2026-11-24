@@ -10,6 +10,7 @@ owner's name. So the owner's guardrails, budgets, filters and audit log apply.
 
 Open it with **Keera Agents** in the panel's
 [account menu](sign-in.md#in-the-browser), and sign in as you do in the panel.
+If you are already signed in to the panel, you are not asked again.
 
 <iframe class="video" src="https://www.youtube-nocookie.com/embed/1C9HsUVr8Bk" title="Keera Agents" allow="encrypted-media; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
 

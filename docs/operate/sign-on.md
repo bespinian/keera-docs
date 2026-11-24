@@ -37,8 +37,12 @@ https://keera.example.ch/control/auth/callback
     KEERA_OIDC_GOOGLE_ISSUER=https://accounts.google.com
     KEERA_OIDC_GOOGLE_CLIENT_ID=<from the console>
     KEERA_OIDC_GOOGLE_CLIENT_SECRET=<from the console>
+    KEERA_OIDC_GOOGLE_DOMAINS=example.ch
     KEERA_OPERATORS=you@example.ch
     ```
+
+    `DOMAINS` is required: with a consent screen of type **External**, any
+    Google account could sign in.
 
     Google sends no groups. Make administrators in the panel or with
     `keera user role`.
@@ -192,7 +196,7 @@ keera user add you@example.ch --passkey --role admin
 Once a provider is set up, the operator key is no longer on the sign-in
 screen. It still works for scripts and pipelines, and it is the way back in if
 single sign-on breaks: open `https://keera.example.ch/?operator_key=1`. A
-sign-in with it lasts 12 hours.
+sign-in with it lasts 12 hours, and ends when the key changes.
 
 Removing someone from the directory does not revoke their API keys. See
 [When someone leaves](../manage/users.md#when-someone-leaves).

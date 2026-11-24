@@ -14,7 +14,8 @@ The panel's [account menu](sign-in.md#in-the-browser) links to Keera Chat.
 
 ## Start a chat
 
-1. Open Keera Chat and sign in as you do in the panel.
+1. Open Keera Chat and sign in as you do in the panel. If you are already
+   signed in to the panel, you are not asked again.
 2. Pick a model at the top. You see only the chat models and routers your keys
    allow.
 3. Type a message.
